@@ -54,6 +54,5 @@ public class TestMain {
             System.out.println(result.size());
             result.clear();
         }
-
     }
 }
