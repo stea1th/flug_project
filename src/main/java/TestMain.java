@@ -35,24 +35,49 @@ public class TestMain {
         while(rowIterator.hasNext()){
             Row row = rowIterator.next();
             Iterator<Cell> cellIterator = row.cellIterator();
+            int count = 0;
 
             while(cellIterator.hasNext()) {
+                count++;
                 Cell cell = cellIterator.next();
+                int index = cell.getColumnIndex();
                 CellType cellType = cell.getCellTypeEnum();
-                if (cellType.equals(CellType.STRING)) {
-                    /*System.out.print(String.format("%20s", cell.getStringCellValue()));
-                    System.out.print("\t");*/
+                if(count<index){
+                    result.add("NULL");
+                    //System.out.print("NULL      " + count);
+                    //System.out.print("\t");
+                    count=index;
+                }
+                switch(cellType){
+                    case STRING:
+                        //result.add(cell.getStringCellValue());
+                        result.add(cell.getStringCellValue());
+                        //System.out.print("StringCell" + index);
+                        //System.out.print("\t");
+                        break;
+                    case NUMERIC:
+                        result.add(Double.valueOf(cell.getNumericCellValue()).toString());
+                        //System.out.print("NumericCell" + index);
+                        //System.out.print("\t");
+                        break;
+                }
+
+
+                /*if (cellType.equals(CellType.STRING)) {
+                    *//*System.out.print(String.format("%20s", cell.getStringCellValue()));
+                    System.out.print("\t");*//*
                     result.add(cell.getStringCellValue());
                 }else if(cellType.equals(CellType._NONE)&&cellType.equals(CellType.BLANK)){
                     result.add("null");
-                }
+                }*/
             }
 //
-            /*if(result.size()>14&&result.size()<18){
-                System.out.println(String.format("%8s %8s", result.get(13), result.get(14)));
-            }*/
-            System.out.println(result.size());
+            if(result.size()==25){
+                System.out.println(String.format("%5s %8s %8s",result.get(18).replace(".0", ""), result.get(19), result.get(20)));
+            }
+            //System.out.println(result.size());
             result.clear();
+            System.out.println("");
         }
     }
 }
