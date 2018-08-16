@@ -10,8 +10,13 @@
     <version>1.0-SNAPSHOT</version>
     <properties>
         <java.version>1.8</java.version>
+        <hibernate.version>5.3.2.Final</hibernate.version>
+        <hibernate-validator.version>6.0.10.Final</hibernate-validator.version>
         <apache.poi.version>3.17</apache.poi.version>
-        <jdbc.version>7.0.0.jre10</jdbc.version>
+        <jdbc.version>7.0.0.jre8</jdbc.version>
+        <spring.version>5.0.7.RELEASE</spring.version>
+        <spring-data-jpa.version>2.0.8.RELEASE</spring-data-jpa.version>
+        <tomcat.version>8.5.32</tomcat.version>
     </properties>
     <build>
         <finalName>flug_project</finalName>
@@ -49,7 +54,52 @@
             <artifactId>mssql-jdbc</artifactId>
             <version>${jdbc.version}</version>
         </dependency>
+        <dependency>
+            <groupId>jtds</groupId>
+            <artifactId>jtds</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <!--Spring-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${spring-data-jpa.version}</version>
+        </dependency>
+        <!--Tomcat-->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jdbc</artifactId>
+            <version>${tomcat.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator.version}</version>
+        </dependency>
+
     </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 
 
 
