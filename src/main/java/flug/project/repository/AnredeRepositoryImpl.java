@@ -23,6 +23,9 @@ public class AnredeRepositoryImpl implements AnredeRepository {
     @Override
     @Transactional
     public Anrede save(Anrede anrede) {
+        Anrede oldAnrede = get(anrede.getId());
+        if(oldAnrede!=null)
+            return oldAnrede;
         em.persist(anrede);
         return anrede;
     }

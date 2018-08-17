@@ -18,14 +18,14 @@ public class PassagierRepositoryImpl implements PassagierRepository {
 
     @Override
     public Passagier get(int id) {
-        return em.find(Passagier.class, id);
+        return em.getReference(Passagier.class, id);
     }
 
     @Override
     @Transactional
     public Passagier save(Passagier passagier, int anredeId) {
         Passagier oldPassagier = get(passagier.getId());
-        if( oldPassagier != null)
+        if(oldPassagier != null)
             return oldPassagier;
         passagier.setAnrede(em.getReference(Anrede.class, anredeId));
         em.persist(passagier);
