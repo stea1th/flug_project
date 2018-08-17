@@ -4,6 +4,7 @@ import flug.project.model.Anrede;
 import flug.project.repository.AnredeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,5 +21,10 @@ public class AnredeServiceImpl implements AnredeService {
     @Override
     public List<Anrede> getAll() {
         return repository.getAll();
+    }
+
+    @Override
+    public Anrede create(Anrede anrede) {
+        return repository.save(anrede);
     }
 }

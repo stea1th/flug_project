@@ -17,12 +17,14 @@ public class AnredeRepositoryImpl implements AnredeRepository {
 
     @Override
     public Anrede get(int id) {
-        return null;
+        return em.getReference(Anrede.class, id);
     }
 
     @Override
+    @Transactional
     public Anrede save(Anrede anrede) {
-        return null;
+        em.persist(anrede);
+        return anrede;
     }
 
     @Override

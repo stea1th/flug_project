@@ -7,4 +7,6 @@ import java.util.List;
 public interface AnredeService {
 
     List<Anrede> getAll();
+
+    Anrede create(Anrede anrede);
 }

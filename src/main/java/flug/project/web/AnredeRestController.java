@@ -18,5 +18,7 @@ public class AnredeRestController {
     }
 
 
-
+    public Anrede create(Anrede anrede){
+        return service.create(anrede);
+    }
 }

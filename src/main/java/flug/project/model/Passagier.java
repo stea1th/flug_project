@@ -2,14 +2,16 @@ package flug.project.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Passagier")
 public class Passagier {
 
     @Id
+    @NotNull
     @Column(name="P_ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotBlank
@@ -24,7 +26,13 @@ public class Passagier {
     public Passagier() {
     }
 
-    public Passagier(@NotBlank String name) {
+//    public Passagier(@NotBlank String name) {
+//        this.name = name;
+//    }
+
+
+    public Passagier(@NotNull Integer id, @NotBlank String name) {
+        this.id = id;
         this.name = name;
     }
 
