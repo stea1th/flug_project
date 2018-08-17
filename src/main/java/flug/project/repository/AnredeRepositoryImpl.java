@@ -16,16 +16,13 @@ public class AnredeRepositoryImpl implements AnredeRepository {
     private EntityManager em;
 
     @Override
-    public Anrede get(int id) {
+    public Anrede get(String id) {
         return em.getReference(Anrede.class, id);
     }
 
     @Override
     @Transactional
     public Anrede save(Anrede anrede) {
-        Anrede oldAnrede = get(anrede.getId());
-        if(oldAnrede!=null)
-            return oldAnrede;
         em.persist(anrede);
         return anrede;
     }
