@@ -15,12 +15,11 @@ public class Anrede {
 
     @Id
     @Column(name = "A_ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "Bez")
-    @NotBlank
+    @Column(name = "bez")
     private String bezeichnung;
+
 
     @OneToMany(mappedBy = "anrede", fetch = FetchType.EAGER)
     private List<Passagier> passagiers;
@@ -28,7 +27,12 @@ public class Anrede {
     public Anrede() {
     }
 
-    public Anrede(@NotBlank String bezeichnung) {
+    public Anrede(String bezeichnung) {
+        this.bezeichnung = bezeichnung;
+    }
+
+    public Anrede(Integer id, String bezeichnung) {
+        this.id = id;
         this.bezeichnung = bezeichnung;
     }
 
@@ -59,7 +63,7 @@ public class Anrede {
     @Override
     public String toString() {
         return "Anrede{" +
-                "bezeichnung='" + bezeichnung + '\'' +
+                "id='" + id + '\'' +
                 '}';
     }
 }

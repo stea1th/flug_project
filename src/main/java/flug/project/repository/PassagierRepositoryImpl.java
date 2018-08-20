@@ -23,10 +23,7 @@ public class PassagierRepositoryImpl implements PassagierRepository {
 
     @Override
     @Transactional
-    public Passagier save(Passagier passagier, String anredeId) {
-        Passagier oldPassagier = get(passagier.getId());
-        if(oldPassagier != null)
-            return oldPassagier;
+    public Passagier save(Passagier passagier, int anredeId) {
         passagier.setAnrede(em.getReference(Anrede.class, anredeId));
         em.persist(passagier);
         return passagier;

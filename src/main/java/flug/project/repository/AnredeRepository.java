@@ -1,7 +1,6 @@
 package flug.project.repository;
 
 import flug.project.model.Anrede;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

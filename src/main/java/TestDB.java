@@ -11,13 +11,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TestDB {
 
     public static void main(String[] args)throws IOException {
 
-        List<String[]> xlsList = XLSReader.readXLS();
-        xlsList.remove(0);
+        /*List<String[]> xlsList = XLSReader.readXLS();
+        xlsList.remove(0);*/
 
         try(ConfigurableApplicationContext appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/spring-db.xml")) {
             AnredeRestController anredeRestController = appCtx.getBean(AnredeRestController.class);
@@ -27,19 +28,20 @@ public class TestDB {
 //            for(Anrede a : list){
 //                a.getPassagiers().forEach(System.out::println);
 //            }
-            /*Anrede an = anredeRestController.create(new Anrede(""));
-            passagierRestController.create(new Passagier(35,"Pavlik Durov"), an.getId());*/
+            Anrede an = anredeRestController.create(new Anrede(5,""));
+            passagierRestController.create(new Passagier(35,"Pavlik Durov"), an.getId());
 
-
+            /*List<String> anredeList = anredeRestController.getAll()
+                    .stream()
+                    .map(Anrede::getId)
+                    .collect(Collectors.toList());
             for(String[] arr : xlsList){
-                Anrede an = anredeRestController.create(new Anrede(arr[1]));
-                passagierRestController.create(new Passagier(Integer.parseInt(arr[0]), arr[2]), an.getId());
-                //System.out.println(arr[0]+" "+ arr[1]+" "+arr[2]);
+                if(!anredeList.contains(arr[1])) {
+                    anredeRestController.create(new Anrede(arr[1]));
+                    anredeList.add(arr[1]);
+                }
+                passagierRestController.create(new Passagier(Integer.parseInt(arr[0]), arr[2]), arr[1]);
+                //System.out.println(arr[0]+" "+ arr[1]+" "+arr[2]);*/
             }
         }
-
-
-
-
-    }
 }

@@ -16,7 +16,7 @@ public class AnredeRepositoryImpl implements AnredeRepository {
     private EntityManager em;
 
     @Override
-    public Anrede get(String id) {
+    public Anrede get(int id) {
         return em.getReference(Anrede.class, id);
     }
 
