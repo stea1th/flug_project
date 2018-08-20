@@ -11,6 +11,6 @@ public interface PassagierRepository {
 
     Passagier save(Passagier passagier, int anredeId);
 
-    List<Passagier> getAll();
+    List<Integer> getAllIds();
 
 }

@@ -19,8 +19,8 @@ public class PassagierServiceImpl implements PassagierService {
     }
 
     @Override
-    public List<Passagier> getAll() {
-        return null;
+    public List<Integer> getAllIds() {
+        return repository.getAllIds();
     }
 
     @Override

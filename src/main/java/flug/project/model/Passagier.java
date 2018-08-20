@@ -4,9 +4,14 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+@NamedQueries({
+        @NamedQuery(name = Passagier.ALL_IDS, query = "SELECT p.id FROM Passagier p ")
+})
 @Entity
 @Table(name = "Passagier")
 public class Passagier {
+
+    public static final String ALL_IDS = "Passagier.getAllIds";
 
     @Id
     @NotNull

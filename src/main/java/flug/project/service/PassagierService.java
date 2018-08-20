@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PassagierService {
 
-    List<Passagier> getAll();
+    List<Integer> getAllIds();
 
     Passagier create(Passagier passagier, int id);
 }
