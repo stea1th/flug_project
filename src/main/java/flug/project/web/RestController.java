@@ -1,7 +1,9 @@
 package flug.project.web;
 
+import flug.project.entity.Adresse;
 import flug.project.entity.Land;
 import flug.project.entity.Ort;
+import flug.project.service.AdresseService;
 import flug.project.service.LandService;
 import flug.project.service.OrtService;
 import flug.project.utils.CountUtil;
@@ -26,12 +28,17 @@ public class RestController {
     @Autowired
     private OrtService ortService;
 
+    @Autowired
+    private AdresseService adresseService;
+
     private Map<String, Integer> landMap;
     private Map<String, Integer> ortMap;
+    private Map<String, Integer> adresseMap;
 
     private void init(){
         landMap = landService.getAll();
         ortMap = ortService.getAll();
+        adresseMap = adresseService.getAll();
     }
 
 
@@ -39,9 +46,18 @@ public class RestController {
         init();
         for(String[] arr : xlsList){
             int landId = saveLand(arr[24]);
-            saveOrt(arr[22], landId);
+            int ortId = saveOrt(arr[22], landId);
+            saveAdresse(ortId, arr[21], arr[23]);
         }
     }
+
+    /*public void test(){
+        init();
+        for(String[] arr : xlsList){
+            saveAdresse(1, arr[21], arr[23]);
+        }
+        adresseMap.forEach((k,v)-> System.out.println(k));
+    }*/
 
     private int saveLand(String land){
         Integer id;
@@ -66,7 +82,21 @@ public class RestController {
                 ortMap.put(o.getBezeichnung(), id);
                 ortService.create(o, landId);
         }
+        return id;
+    }
 
+    private int saveAdresse(int ortId, String... arr){
+        Integer id;
+        String adresse = arr[1]+" "+arr[0].replace(".0", "");
+        if(adresseMap.containsKey(adresse)){
+            System.out.println(adresse);
+            id = adresseMap.get(adresse);
+        }else{
+            Adresse a = new Adresse(CountUtil.getNewId(), arr[0].replace(".0", ""), arr[1]);
+            id = a.getAdrId();
+            adresseMap.put(adresse, id);
+            adresseService.create(a, ortId);
+        }
         return id;
     }
 

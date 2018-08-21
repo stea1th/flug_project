@@ -1,16 +1,27 @@
 package flug.project.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
+
+@NamedQuery(name=Adresse.GET_ALL , query = "SELECT a FROM Adresse a ")
 @Entity
 public class Adresse {
     private int adrId;
     private String plz;
     private String strasse;
+    private Ort ortById;
+
+    public static final  String GET_ALL = "Adresse.getAll";
+
+    public Adresse() {
+    }
+
+    public Adresse(int adrId, String plz, String strasse) {
+        this.adrId = adrId;
+        this.plz = plz;
+        this.strasse = strasse;
+    }
 
     @Id
     @Column(name = "Adr_ID", nullable = false)
@@ -50,6 +61,16 @@ public class Adresse {
         return adrId == adresse.adrId &&
                 Objects.equals(plz, adresse.plz) &&
                 Objects.equals(strasse, adresse.strasse);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "O_ID", referencedColumnName = "O_ID", nullable = false)
+    public Ort getOrtById() {
+        return ortById;
+    }
+
+    public void setOrtById(Ort ortById) {
+        this.ortById = ortById;
     }
 
     @Override
