@@ -1,9 +1,11 @@
 package flug.project.web;
 
 import flug.project.entity.Adresse;
+import flug.project.entity.Anrede;
 import flug.project.entity.Land;
 import flug.project.entity.Ort;
 import flug.project.service.AdresseService;
+import flug.project.service.AnredeService;
 import flug.project.service.LandService;
 import flug.project.service.OrtService;
 import flug.project.utils.CountUtil;
@@ -31,14 +33,19 @@ public class RestController {
     @Autowired
     private AdresseService adresseService;
 
+    @Autowired
+    private AnredeService anredeService;
+
     private Map<String, Integer> landMap;
     private Map<String, Integer> ortMap;
     private Map<String, Integer> adresseMap;
+    private Map<String, Integer> anredeMap;
 
     private void init(){
         landMap = landService.getAll();
         ortMap = ortService.getAll();
         adresseMap = adresseService.getAll();
+        anredeMap = anredeService.getAll();
     }
 
 
@@ -47,7 +54,8 @@ public class RestController {
         for(String[] arr : xlsList){
             int landId = saveLand(arr[24]);
             int ortId = saveOrt(arr[22], landId);
-            saveAdresse(ortId, arr[21], arr[23]);
+            int adrId = saveAdresse(ortId, arr[21], arr[23]);
+            int anrId = saveAnrede(arr[19]);
         }
     }
 
@@ -96,6 +104,19 @@ public class RestController {
             id = a.getAdrId();
             adresseMap.put(adresse, id);
             adresseService.create(a, ortId);
+        }
+        return id;
+    }
+
+    private int saveAnrede(String anrede){
+        Integer id;
+        if(anredeMap.containsKey(anrede)){
+            id = anredeMap.get(anrede);
+        }else{
+            Anrede an = new Anrede(CountUtil.getNewId(), anrede);
+            id = an.getaId();
+            anredeMap.put(an.getBezeichnung(), id);
+            anredeService.create(an);
         }
         return id;
     }
