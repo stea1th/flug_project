@@ -2,13 +2,23 @@ package flug.project.entity;
 
 import javax.persistence.*;
 import java.util.Objects;
-
+@NamedQuery(name = Passagier.GET_ALL_IDS, query = "SELECT p.id FROM Passagier p ")
 @Entity
 public class Passagier {
     private int pId;
     private String name;
     private Anrede anredeByAId;
     private Adresse adresseByAdrId;
+
+    public static final String GET_ALL_IDS = "Passagier.getAllIds";
+
+    public Passagier() {
+    }
+
+    public Passagier(int pId, String name) {
+        this.pId = pId;
+        this.name = name;
+    }
 
     @Id
     @Column(name = "P_ID", nullable = false)

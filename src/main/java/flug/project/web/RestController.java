@@ -1,13 +1,7 @@
 package flug.project.web;
 
-import flug.project.entity.Adresse;
-import flug.project.entity.Anrede;
-import flug.project.entity.Land;
-import flug.project.entity.Ort;
-import flug.project.service.AdresseService;
-import flug.project.service.AnredeService;
-import flug.project.service.LandService;
-import flug.project.service.OrtService;
+import flug.project.entity.*;
+import flug.project.service.*;
 import flug.project.utils.CountUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,9 +14,7 @@ public class RestController {
 
     private List<String[]> xlsList;
 
-    public void setXlsList(List<String[]> xlsList) {
-        this.xlsList = xlsList;
-    }
+
 
     @Autowired
     private LandService landService;
@@ -36,16 +28,25 @@ public class RestController {
     @Autowired
     private AnredeService anredeService;
 
+    @Autowired
+    private PassagierService passagierService;
+
     private Map<String, Integer> landMap;
     private Map<String, Integer> ortMap;
     private Map<String, Integer> adresseMap;
     private Map<String, Integer> anredeMap;
+    private List<Integer> passagierIds;
+
+    public void setXlsList(List<String[]> xlsList) {
+        this.xlsList = xlsList;
+    }
 
     private void init(){
         landMap = landService.getAll();
         ortMap = ortService.getAll();
         adresseMap = adresseService.getAll();
         anredeMap = anredeService.getAll();
+        passagierIds = passagierService.getAllIds();
     }
 
 
@@ -56,16 +57,9 @@ public class RestController {
             int ortId = saveOrt(arr[22], landId);
             int adrId = saveAdresse(ortId, arr[21], arr[23]);
             int anrId = saveAnrede(arr[19]);
+            int passId = savePassagier(anrId, adrId, arr[18], arr[20] );
         }
     }
-
-    /*public void test(){
-        init();
-        for(String[] arr : xlsList){
-            saveAdresse(1, arr[21], arr[23]);
-        }
-        adresseMap.forEach((k,v)-> System.out.println(k));
-    }*/
 
     private int saveLand(String land){
         Integer id;
@@ -97,7 +91,6 @@ public class RestController {
         Integer id;
         String adresse = arr[1]+" "+arr[0].replace(".0", "");
         if(adresseMap.containsKey(adresse)){
-            System.out.println(adresse);
             id = adresseMap.get(adresse);
         }else{
             Adresse a = new Adresse(CountUtil.getNewId(), arr[0].replace(".0", ""), arr[1]);
@@ -117,6 +110,15 @@ public class RestController {
             id = an.getaId();
             anredeMap.put(an.getBezeichnung(), id);
             anredeService.create(an);
+        }
+        return id;
+    }
+
+    private int savePassagier(int anrId, int adrId, String... arr){
+        Integer id = Integer.valueOf(arr[0].replace(".0", ""));
+        if(!passagierIds.contains(id)){
+            passagierService.create(new Passagier(id, arr[1]), anrId, adrId);
+            passagierIds.add(id);
         }
         return id;
     }

@@ -1,3 +1,5 @@
+package flug.project;
+
 import flug.project.mock.model.Anrede;
 import flug.project.mock.model.Passagier;
 import flug.project.mock.web.AnredeRestController;
@@ -15,9 +17,9 @@ public class TestDB {
 
     public static void main(String[] args)throws IOException {
 
-        List<String[]> xlsList = XLSReader.readXLS();
+       /* List<String[]> xlsList = XLSReader.readXLS();
         xlsList.remove(0);
-        saveAnredeUndPassagier(xlsList);
+        saveAnredeUndPassagier(xlsList);*/
     }
 
     public static void saveAnredeUndPassagier(List<String[]> xlsList){
