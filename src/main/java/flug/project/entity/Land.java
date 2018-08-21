@@ -12,6 +12,14 @@ public class Land {
 
     public static final String GET_ALL = "Land.getAll";
 
+    public Land() {
+    }
+
+    public Land(int lId, String bezeichnung) {
+        this.lId = lId;
+        this.bezeichnung = bezeichnung;
+    }
+
     @Id
     @Column(name = "L_ID", nullable = false)
     public int getlId() {

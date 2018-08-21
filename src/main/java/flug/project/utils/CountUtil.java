@@ -1,3 +1,5 @@
+package flug.project.utils;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class CountUtil {

@@ -7,5 +7,5 @@ import java.util.Map;
 public interface OrtService {
     Map<String, Integer> getAll();
 
-    Ort save(Ort ort, int landId);
+    Ort create(Ort ort, int landId);
 }

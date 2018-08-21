@@ -1,12 +1,13 @@
 package flug.project.entity;
 
 import javax.persistence.*;
+import java.time.LocalTime;
 import java.util.Objects;
 
 @Entity
 public class Linie {
     private int liId;
-    private Object dauer;
+    private LocalTime dauer;
     private Flughafen flughafenByVon;
     private Flughafen flughafenByNach;
     private Fluggesellschaft fluggesellschaftByFgId;
@@ -23,11 +24,11 @@ public class Linie {
 
     @Basic
     @Column(name = "Dauer", nullable = false)
-    public Object getDauer() {
+    public LocalTime getDauer() {
         return dauer;
     }
 
-    public void setDauer(Object dauer) {
+    public void setDauer(LocalTime dauer) {
         this.dauer = dauer;
     }
 

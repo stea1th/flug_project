@@ -13,7 +13,15 @@ public class Ort {
     private String bezeichnung;
     private Land landByLId;
 
-    public static final String GET_ALL = "Land.getAll";
+    public static final String GET_ALL = "Ort.getAll";
+
+    public Ort() {
+    }
+
+    public Ort(int oId, String bezeichnung) {
+        this.oId = oId;
+        this.bezeichnung = bezeichnung;
+    }
 
     @Id
     @Column(name = "O_ID", nullable = false)

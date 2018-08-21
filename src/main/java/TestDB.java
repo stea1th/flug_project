@@ -2,6 +2,7 @@ import flug.project.mock.model.Anrede;
 import flug.project.mock.model.Passagier;
 import flug.project.mock.web.AnredeRestController;
 import flug.project.mock.web.PassagierRestController;
+import flug.project.utils.CountUtil;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

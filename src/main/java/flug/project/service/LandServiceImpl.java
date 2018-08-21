@@ -25,6 +25,6 @@ public class LandServiceImpl implements LandService {
 
     @Override
     public Land create(Land land) {
-        return null;
+        return repository.save(land);
     }
 }
