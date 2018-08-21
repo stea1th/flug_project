@@ -1,7 +1,6 @@
-package flug.project.model;
+package flug.project.mock.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @NamedQueries({

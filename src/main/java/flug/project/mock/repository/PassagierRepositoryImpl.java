@@ -1,7 +1,7 @@
-package flug.project.repository;
+package flug.project.mock.repository;
 
-import flug.project.model.Anrede;
-import flug.project.model.Passagier;
+import flug.project.mock.model.Passagier;
+import flug.project.mock.model.Anrede;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

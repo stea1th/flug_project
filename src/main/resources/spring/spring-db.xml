@@ -26,7 +26,7 @@
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"
-          p:packagesToScan="flug.project.**.model">
+          p:packagesToScan="flug.project.**.entity">
 
         <property name="jpaPropertyMap">
             <map>

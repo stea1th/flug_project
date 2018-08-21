@@ -1,6 +1,6 @@
-package flug.project.service;
+package flug.project.mock.service;
 
-import flug.project.model.Passagier;
+import flug.project.mock.model.Passagier;
 
 import java.util.List;
 

@@ -1,10 +1,9 @@
-package flug.project.service;
+package flug.project.mock.service;
 
-import flug.project.model.Anrede;
-import flug.project.repository.AnredeRepository;
+import flug.project.mock.model.Anrede;
+import flug.project.mock.repository.AnredeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

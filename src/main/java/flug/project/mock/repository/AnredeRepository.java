@@ -1,6 +1,6 @@
-package flug.project.repository;
+package flug.project.mock.repository;
 
-import flug.project.model.Anrede;
+import flug.project.mock.model.Anrede;
 
 import java.util.List;
 

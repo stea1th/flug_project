@@ -1,7 +1,7 @@
-package flug.project.service;
+package flug.project.mock.service;
 
-import flug.project.model.Passagier;
-import flug.project.repository.PassagierRepository;
+import flug.project.mock.model.Passagier;
+import flug.project.mock.repository.PassagierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

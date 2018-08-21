@@ -1,11 +1,7 @@
-import flug.project.model.Anrede;
-import flug.project.model.Passagier;
-import flug.project.repository.AnredeRepository;
-import flug.project.service.AnredeService;
-import flug.project.service.AnredeServiceImpl;
-import flug.project.web.AnredeRestController;
-import flug.project.web.PassagierRestController;
-import org.springframework.beans.factory.annotation.Autowired;
+import flug.project.mock.model.Anrede;
+import flug.project.mock.model.Passagier;
+import flug.project.mock.web.AnredeRestController;
+import flug.project.mock.web.PassagierRestController;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

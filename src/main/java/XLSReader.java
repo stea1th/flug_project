@@ -72,7 +72,8 @@ public class XLSReader {
 //
              if (stringList.size() == 25) {
 //                System.out.println(String.format("%5s %8s %8s",stringList.get(18).replace(".0", ""), stringList.get(19), stringList.get(20)));
-                 result.add(new String[]{stringList.get(18).replace(".0", ""), stringList.get(19), stringList.get(20)});
+//                 result.add(new String[]{stringList.get(18).replace(".0", ""), stringList.get(19), stringList.get(20)});
+                 result.add(stringList.toArray(new String[25]));
              }
              //System.out.println(stringList.size());
              stringList.clear();
