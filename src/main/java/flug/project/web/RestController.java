@@ -6,6 +6,7 @@ import flug.project.utils.CountUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +36,9 @@ public class RestController {
     @Autowired
     private FluggeselschaftService fluggeselschaftService;
 
+    @Autowired
+    private LinieService linieService;
+
     private Map<String, Integer> landMap;
     private Map<String, Integer> ortMap;
     private Map<String, Integer> adresseMap;
@@ -42,6 +46,7 @@ public class RestController {
     private List<Integer> passagierIds;
     private List<String> flughafenIds;
     private List<String> fluggesIds;
+    private List<Integer> linIds;
 
 
     public void setXlsList(List<String[]> xlsList) {
@@ -56,6 +61,7 @@ public class RestController {
         passagierIds = passagierService.getAllIds();
         flughafenIds = flughafenService.getAllIds();
         fluggesIds = fluggeselschaftService.getAllIds();
+        linIds = linieService.getAllIds();
     }
 
 
@@ -72,6 +78,8 @@ public class RestController {
             String bisFlug = saveFlughafen(arr[6], arr[7], arr[8]);
 
             String fluggesId = saveFluggeselschaft(arr[0], arr[1]);
+
+            int linId = saveLinie(new String[]{arr[2], arr[9], vonFlug, bisFlug, fluggesId});
         }
     }
 
@@ -150,6 +158,17 @@ public class RestController {
         if(!fluggesIds.contains(id)){
             fluggeselschaftService.create(new Fluggesellschaft(id, name));
             fluggesIds.add(id);
+        }
+        return id;
+    }
+
+    private int saveLinie(String[] arr){
+        Integer id = Integer.valueOf(arr[0].replace(".0", ""));
+        String[] time = arr[1].split(":");
+        LocalTime dauer = LocalTime.of(Integer.parseInt(time[0].trim()), Integer.parseInt(time[1].trim()));
+        if(!linIds.contains(id)){
+            linieService.create(new Linie(id, dauer), arr[2], arr[3], arr[4]);
+            linIds.add(id);
         }
         return id;
     }

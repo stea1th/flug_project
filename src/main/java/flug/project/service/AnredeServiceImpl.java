@@ -5,6 +5,7 @@ import flug.project.repository.AnredeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -27,6 +28,11 @@ public class AnredeServiceImpl implements AnredeService {
 
     @Override
     public Anrede create(Anrede anrede, Integer id) {
+        return null;
+    }
+
+    @Override
+    public List<String> getAllIds() {
         return null;
     }
 

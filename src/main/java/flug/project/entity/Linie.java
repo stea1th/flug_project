@@ -5,12 +5,23 @@ import java.time.LocalTime;
 import java.util.Objects;
 
 @Entity
+@NamedQuery(name=Linie.GET_ALL, query="SELECT ln.liId FROM Linie ln ")
 public class Linie {
     private int liId;
     private LocalTime dauer;
     private Flughafen flughafenByVon;
     private Flughafen flughafenByNach;
     private Fluggesellschaft fluggesellschaftByFgId;
+
+    public static final String GET_ALL = "Linie.getAll";
+
+    public Linie() {
+    }
+
+    public Linie(int liId, LocalTime dauer) {
+        this.liId = liId;
+        this.dauer = dauer;
+    }
 
     @Id
     @Column(name = "LI_ID", nullable = false)

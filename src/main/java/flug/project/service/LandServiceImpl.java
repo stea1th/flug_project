@@ -4,6 +4,7 @@ import flug.project.entity.Land;
 import flug.project.repository.LandRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -25,6 +26,11 @@ public class LandServiceImpl implements LandService {
 
     @Override
     public Land create(Land land, Integer id) {
+        return null;
+    }
+
+    @Override
+    public List<String> getAllIds() {
         return null;
     }
 

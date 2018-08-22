@@ -5,6 +5,7 @@ import flug.project.repository.OrtRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -28,5 +29,10 @@ public class OrtServiceImpl implements OrtService {
     @Override
     public Ort create(Ort ort, Integer landId) {
         return repository.save(ort, landId);
+    }
+
+    @Override
+    public List<String> getAllIds() {
+        return null;
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -33,5 +34,10 @@ public class AdresseServiceImpl implements AdresseService {
     @Override
     public Adresse create(Adresse adresse, Integer id) {
         return repository.save(adresse, id);
+    }
+
+    @Override
+    public List<String> getAllIds() {
+        return null;
     }
 }

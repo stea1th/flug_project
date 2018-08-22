@@ -1,7 +1,7 @@
 package flug.project.service;
 
-import flug.project.entity.Passagier;
-import flug.project.repository.PassagierRepository;
+import flug.project.entity.Linie;
+import flug.project.repository.LinieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,18 +9,18 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class PassagierServiceImpl implements PassagierService {
+public class LinieServiceImpl implements LinieService {
 
-    private PassagierRepository repository;
+    private LinieRepository repository;
 
     @Autowired
-    public PassagierServiceImpl(PassagierRepository repository) {
+    public LinieServiceImpl(LinieRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public Passagier create(Passagier passagier, int anrId, int adrId) {
-        return repository.save(passagier, anrId, adrId);
+    public Linie create(Linie linie, String vonId, String nachId, String fluggId) {
+        return repository.save(linie, vonId, nachId, fluggId);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class PassagierServiceImpl implements PassagierService {
     }
 
     @Override
-    public Passagier create(Passagier passagier, String id) {
+    public Linie create(Linie linie, String id) {
         return null;
     }
 
