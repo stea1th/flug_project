@@ -23,6 +23,11 @@ public class AnredeRepositoryImpl implements AnredeRepository {
     }
 
     @Override
+    public Anrede save(Anrede anrede, Integer... arr) {
+        return null;
+    }
+
+    @Override
     public List<Anrede> getAll() {
         return em.createNamedQuery(Anrede.GET_ALL, Anrede.class)
                 .getResultList();

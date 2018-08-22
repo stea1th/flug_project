@@ -23,6 +23,11 @@ public class LandRepositoryImpl implements LandRepository {
     }
 
     @Override
+    public Land save(Land land, Integer... arr) {
+        return null;
+    }
+
+    @Override
     public List<Land> getAll() {
         return em.createNamedQuery(Land.GET_ALL, Land.class)
                 .getResultList();

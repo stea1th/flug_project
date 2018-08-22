@@ -9,7 +9,7 @@ public class Flughafen {
     private String fhId;
     private Ort ortById;
 
-    public static final String GET_ALL_IDS = "Flughafen.getAllIds";
+    public static final String GET_ALL_IDS = "Flughafen.getAll";
 
     public Flughafen() {
     }

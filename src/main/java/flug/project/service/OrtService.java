@@ -1,10 +1,8 @@
 package flug.project.service;
 
 import flug.project.entity.Ort;
-import flug.project.service.interfaces.InterfaceWithMap;
+import flug.project.service.interfaces.MainServiceInterface;
 
-import java.util.Map;
-
-public interface OrtService extends InterfaceWithMap<Ort, String, Integer> {
+public interface OrtService extends MainServiceInterface<Ort, String, Integer> {
 
 }

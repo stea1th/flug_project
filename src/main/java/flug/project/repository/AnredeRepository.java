@@ -1,10 +1,9 @@
 package flug.project.repository;
 
 import flug.project.entity.Anrede;
-import flug.project.repository.interfaces.MainIterface;
+import flug.project.repository.interfaces.MainRepositoryInterface;
 
-import java.util.List;
+public interface AnredeRepository extends MainRepositoryInterface<Anrede, Integer, Anrede> {
 
-public interface AnredeRepository extends MainIterface<Anrede> {
-
+    Anrede save(Anrede anrede);
 }

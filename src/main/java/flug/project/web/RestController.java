@@ -29,11 +29,15 @@ public class RestController {
     @Autowired
     private PassagierService passagierService;
 
+    @Autowired
+    private FlughafenService flughafenService;
+
     private Map<String, Integer> landMap;
     private Map<String, Integer> ortMap;
     private Map<String, Integer> adresseMap;
     private Map<String, Integer> anredeMap;
     private List<Integer> passagierIds;
+    private List<String> flughafenIds;
 
     public void setXlsList(List<String[]> xlsList) {
         this.xlsList = xlsList;
@@ -45,6 +49,7 @@ public class RestController {
         adresseMap = adresseService.getAll();
         anredeMap = anredeService.getAll();
         passagierIds = passagierService.getAllIds();
+        flughafenIds = flughafenService.getAllIds();
     }
 
 
@@ -55,7 +60,10 @@ public class RestController {
             int ortId = saveOrt(arr[22], landId);
             int adrId = saveAdresse(ortId, arr[21], arr[23]);
             int anrId = saveAnrede(arr[19]);
-            int passId = savePassagier(anrId, adrId, arr[18], arr[20] );
+            int passId = savePassagier(anrId, adrId, arr[18], arr[20]);
+
+            String vonFlug = saveFlughafen(arr[3], arr[4], arr[5]);
+            String bisFlug = saveFlughafen(arr[6], arr[7], arr[8]);
         }
     }
 
@@ -119,6 +127,15 @@ public class RestController {
             passagierIds.add(id);
         }
         return id;
+    }
+
+    private String saveFlughafen(String flugId, String land, String ort){
+        int ortId = saveOrt(ort, saveLand(land));
+        if(!flughafenIds.contains(flugId)){
+            flughafenService.create(new Flughafen(flugId), ortId);
+            flughafenIds.add(flugId);
+        }
+        return flugId;
     }
 
     /*for(String[] arr : xlsList){

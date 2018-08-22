@@ -1,7 +1,6 @@
 package flug.project.service;
 
 import flug.project.entity.Passagier;
-import flug.project.service.interfaces.InterfaceWithMap;
 
 import java.util.List;
 

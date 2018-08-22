@@ -1,12 +1,10 @@
 package flug.project.repository.interfaces;
 
-
 import java.util.List;
 
-public interface MainInterfaceWithArg<T, S> {
-
+public interface MainRepositoryInterface<T, S, I> {
 
     T save(T t, S... arr);
 
-    List<T> getAll();
+    List<I> getAll();
 }

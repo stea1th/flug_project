@@ -1,10 +1,8 @@
 package flug.project.repository;
 
 import flug.project.entity.Flughafen;
-import flug.project.repository.interfaces.InterfaceForList;
+import flug.project.repository.interfaces.MainRepositoryInterface;
 
-import java.util.List;
-
-public interface FlughafenRepository extends InterfaceForList<Flughafen, Integer, String> {
+public interface FlughafenRepository extends MainRepositoryInterface<Flughafen, Integer, String> {
 
 }

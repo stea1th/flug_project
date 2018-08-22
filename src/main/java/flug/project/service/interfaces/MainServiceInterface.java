@@ -2,7 +2,7 @@ package flug.project.service.interfaces;
 
 import java.util.Map;
 
-public interface InterfaceWithMap<T, S, I> {
+public interface MainServiceInterface<T, S, I> {
 
     Map<S, I> getAll();
 

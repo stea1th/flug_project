@@ -28,7 +28,7 @@ public class PassagierRepositoryImpl implements PassagierRepository {
     }
 
     @Override
-    public List<Integer> getAllIds() {
+    public List<Integer> getAll() {
         return em.createNamedQuery(Passagier.GET_ALL_IDS, Integer.class)
                 .getResultList();
     }
