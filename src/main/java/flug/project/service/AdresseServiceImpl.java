@@ -13,12 +13,13 @@ import java.util.stream.Collectors;
 @Service
 public class AdresseServiceImpl implements AdresseService {
 
+    @Autowired
     private AdresseRepository repository;
 
-    @Autowired
-    public AdresseServiceImpl(AdresseRepository repository) {
-        this.repository = repository;
-    }
+//    @Autowired
+//    public AdresseServiceImpl(AdresseRepository repository) {
+//        this.repository = repository;
+//    }
 
     @Override
     public Map<String, Integer> getAll() {

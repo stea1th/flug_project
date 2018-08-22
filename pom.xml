@@ -16,6 +16,7 @@
         <jdbc.version>7.0.0.jre8</jdbc.version>
         <spring.version>5.0.7.RELEASE</spring.version>
         <spring-data-jpa.version>2.0.8.RELEASE</spring-data-jpa.version>
+        <postgresql.version>42.2.2</postgresql.version>
         <tomcat.version>8.5.32</tomcat.version>
     </properties>
     <build>
@@ -49,11 +50,6 @@
             <version>${apache.poi.version}</version>
         </dependency>
         <!--DB-->
-        <dependency>
-            <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>mssql-jdbc</artifactId>
-            <version>${jdbc.version}</version>
-        </dependency>
         <!--<dependency>
             <groupId>jtds</groupId>
             <artifactId>jtds</artifactId>
@@ -92,8 +88,34 @@
             <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
-
     </dependencies>
+    <profiles>
+        <profile>
+            <id>postgres</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                    <version>${postgresql.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>mssql</id>
+            <dependencies>
+                <dependency>
+                    <groupId>com.microsoft.sqlserver</groupId>
+                    <artifactId>mssql-jdbc</artifactId>
+                    <version>${jdbc.version}</version>
+                </dependency>
+            </dependencies>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
+
+
     <dependencyManagement>
         <dependencies>
             <dependency>

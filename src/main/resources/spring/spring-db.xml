@@ -12,23 +12,11 @@
        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
 
-
-    <context:property-placeholder location="classpath:db/mssql.properties" system-properties-mode="OVERRIDE"/>
+    <jdbc:initialize-database data-source="dataSource" enabled="${database.init}">
+        <jdbc:script encoding="utf-8" location="classpath:db/${jdbc.initLocation}"/>
+    </jdbc:initialize-database>
 
     <context:component-scan base-package="flug.project.**.repository"/>
-    <jpa:repositories base-package="flug.project.**.repository"/>
-
-    <bean id="dataSource"
-          class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-          p:driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-          p:url="${database.url}"
-          p:username="${database.username}"
-          p:password="${database.password}"/>
-
-    <jdbc:initialize-database data-source="dataSource" enabled="${database.init}">
-        <jdbc:script encoding="utf-8" location="classpath:db/initDB.sql"/>
-        <!--<jdbc:script encoding="utf-8" location="classpath:db/populateDB.sql"/>-->
-    </jdbc:initialize-database>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"
@@ -55,4 +43,24 @@
     <!-- Transaction manager for a single JPA EntityManagerFactory (alternative to JTA) -->
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
           p:entityManagerFactory-ref="entityManagerFactory"/>
+
+
+
+    <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+          p:driverClassName="org.postgresql.Driver"
+          p:url="${database.url}"
+          p:username="${database.username}"
+          p:password="${database.password}"/>
+
+
+    <!--<context:property-placeholder location="classpath:db/mssql.properties" system-properties-mode="OVERRIDE"/>-->
+    <!--<bean id="dataSource"-->
+        <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource"-->
+        <!--p:driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"-->
+        <!--p:url="${database.url}"-->
+        <!--p:username="${database.username}"-->
+        <!--p:password="${database.password}"/>-->
+
 </beans>
