@@ -32,12 +32,17 @@ public class RestController {
     @Autowired
     private FlughafenService flughafenService;
 
+    @Autowired
+    private FluggeselschaftService fluggeselschaftService;
+
     private Map<String, Integer> landMap;
     private Map<String, Integer> ortMap;
     private Map<String, Integer> adresseMap;
     private Map<String, Integer> anredeMap;
     private List<Integer> passagierIds;
     private List<String> flughafenIds;
+    private List<String> fluggesIds;
+
 
     public void setXlsList(List<String[]> xlsList) {
         this.xlsList = xlsList;
@@ -50,6 +55,7 @@ public class RestController {
         anredeMap = anredeService.getAll();
         passagierIds = passagierService.getAllIds();
         flughafenIds = flughafenService.getAllIds();
+        fluggesIds = fluggeselschaftService.getAllIds();
     }
 
 
@@ -64,6 +70,8 @@ public class RestController {
 
             String vonFlug = saveFlughafen(arr[3], arr[4], arr[5]);
             String bisFlug = saveFlughafen(arr[6], arr[7], arr[8]);
+
+            String fluggesId = saveFluggeselschaft(arr[0], arr[1]);
         }
     }
 
@@ -136,6 +144,14 @@ public class RestController {
             flughafenIds.add(flugId);
         }
         return flugId;
+    }
+
+    private String saveFluggeselschaft(String id, String name){
+        if(!fluggesIds.contains(id)){
+            fluggeselschaftService.create(new Fluggesellschaft(id, name));
+            fluggesIds.add(id);
+        }
+        return id;
     }
 
     /*for(String[] arr : xlsList){

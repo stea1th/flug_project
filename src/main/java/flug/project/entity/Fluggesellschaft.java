@@ -1,15 +1,23 @@
 package flug.project.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
+@NamedQuery(name= Fluggesellschaft.GET_ALL, query = "SELECT flg.fgId FROM Fluggesellschaft flg ")
 @Entity
 public class Fluggesellschaft {
     private String fgId;
     private String name;
+
+    public static final String GET_ALL = "Fluggeselschaft.getAll";
+
+    public Fluggesellschaft() {
+    }
+
+    public Fluggesellschaft(String fgId, String name) {
+        this.fgId = fgId;
+        this.name = name;
+    }
 
     @Id
     @Column(name = "FG_ID", nullable = false, length = 2)
