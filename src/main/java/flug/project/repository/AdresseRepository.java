@@ -2,12 +2,10 @@ package flug.project.repository;
 
 
 import flug.project.entity.Adresse;
+import flug.project.repository.interfaces.MainInterfaceWithArg;
 
-import java.util.List;
 
-public interface AdresseRepository {
 
-    Adresse save(Adresse adresse, int ortId);
+public interface AdresseRepository extends MainInterfaceWithArg<Adresse, Integer> {
 
-    List<Adresse> getAll();
 }

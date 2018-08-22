@@ -1,12 +1,10 @@
 package flug.project.repository;
 
 import flug.project.entity.Land;
+import flug.project.repository.interfaces.MainIterface;
 
-import java.util.List;
 
-public interface LandRepository {
 
-    Land save(Land land);
+public interface LandRepository extends MainIterface<Land> {
 
-    List<Land> getAll();
 }

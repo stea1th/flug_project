@@ -3,12 +3,10 @@ package flug.project.repository;
 
 
 import flug.project.entity.Passagier;
+import flug.project.repository.interfaces.InterfaceForList;
 
 import java.util.List;
 
-public interface PassagierRepository {
+public interface PassagierRepository extends InterfaceForList<Passagier, Integer, Integer> {
 
-    Passagier save(Passagier passagier, int anrId, int adrId);
-
-    List<Integer> getAllIds();
 }

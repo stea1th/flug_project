@@ -26,7 +26,7 @@ public class OrtServiceImpl implements OrtService {
     }
 
     @Override
-    public Ort create(Ort ort, int landId) {
+    public Ort create(Ort ort, Integer landId) {
         return repository.save(ort, landId);
     }
 }

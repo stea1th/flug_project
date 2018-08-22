@@ -1,16 +1,11 @@
 package flug.project.repository;
 
 import flug.project.entity.Ort;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import flug.project.repository.interfaces.MainInterfaceWithArg;
 
 import java.util.List;
 
 
-public interface OrtRepository {
+public interface OrtRepository extends MainInterfaceWithArg<Ort, Integer> {
 
-
-    Ort save(Ort ort, int landId);
-
-    List<Ort> getAll();
 }

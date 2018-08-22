@@ -1,12 +1,10 @@
 package flug.project.service;
 
 import flug.project.entity.Adresse;
+import flug.project.service.interfaces.InterfaceWithMap;
 
 import java.util.Map;
 
-public interface AdresseService {
+public interface AdresseService extends InterfaceWithMap<Adresse, String, Integer> {
 
-    Map<String, Integer> getAll();
-
-    Adresse create(Adresse adresse, int ortId);
 }

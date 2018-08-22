@@ -31,7 +31,7 @@ public class AdresseServiceImpl implements AdresseService {
     }
 
     @Override
-    public Adresse create(Adresse adresse, int ortId) {
-        return repository.save(adresse, ortId);
+    public Adresse create(Adresse adresse, Integer id) {
+        return repository.save(adresse, id);
     }
 }

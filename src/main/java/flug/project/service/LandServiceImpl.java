@@ -24,6 +24,11 @@ public class LandServiceImpl implements LandService {
     }
 
     @Override
+    public Land create(Land land, Integer id) {
+        return null;
+    }
+
+    @Override
     public Land create(Land land) {
         return repository.save(land);
     }

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -19,8 +18,8 @@ public class AdresseRepositoryImpl implements AdresseRepository {
 
     @Override
     @Transactional
-    public Adresse save(Adresse adresse, int ortId) {
-        adresse.setOrtById(em.getReference(Ort.class, ortId));
+    public Adresse save(Adresse adresse, Integer... ortId) {
+        adresse.setOrtById(em.getReference(Ort.class, ortId[0]));
         em.persist(adresse);
         return adresse;
     }

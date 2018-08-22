@@ -26,6 +26,10 @@ public class AnredeServiceImpl implements AnredeService {
     }
 
     @Override
+    public Anrede create(Anrede anrede, Integer id) {
+        return null;
+    }
+
     public Anrede create(Anrede anrede) {
         return repository.save(anrede);
     }

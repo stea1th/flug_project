@@ -18,8 +18,8 @@ public class OrtRepositoryImpl implements OrtRepository {
 
     @Override
     @Transactional
-    public Ort save(Ort ort, int landId) {
-        ort.setLandByLId(em.getReference(Land.class, landId));
+    public Ort save(Ort ort, Integer... landId) {
+        ort.setLandByLId(em.getReference(Land.class, landId[0]));
         em.persist(ort);
         return ort;
     }
