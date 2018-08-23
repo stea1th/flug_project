@@ -17,16 +17,14 @@ create table FlugzeugTyp
   primary key,
   Typ        varchar(15) not null,
   Kapaz      int         not null,
-  Hersteller varchar(50) not null,
+  Hersteller varchar(50) not null
 );
 
 create table Fluggesellschaft
 (
   FG_ID char(2)      not null
     constraint FG_ID_PK
-    primary key
-    constraint FG_ID_check
-    check ([FG_ID] like '[A-Z][A-Z]'),
+    primary key,
   Name  varchar(100) not null
 );
 

@@ -10,7 +10,7 @@ public class TestMainDB {
 
         try(ConfigurableApplicationContext appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/spring-db.xml")) {
             FlugController controller = appCtx.getBean(FlugController.class);
-            controller.saveAll("c:/demo/aa_test_k.xls");
+            controller.saveAll("D:/JavaProjects/aa_test.xls");
         }
 
     }

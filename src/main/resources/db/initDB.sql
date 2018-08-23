@@ -17,7 +17,7 @@ create table FlugzeugTyp
   primary key,
   Typ        varchar(15) not null,
   Kapaz      int         not null,
-  Hersteller varchar(50) not null,
+  Hersteller varchar(50) not null
 );
 
 create table Fluggesellschaft
