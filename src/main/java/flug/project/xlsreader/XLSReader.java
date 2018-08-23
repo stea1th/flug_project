@@ -1,3 +1,5 @@
+package flug.project.xlsreader;
+
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -15,10 +17,10 @@ import java.util.List;
 
 public class XLSReader {
 
-     public static List<String[]> readXLS() throws IOException{
+     public static List<String[]> readXLS(String url) throws IOException{
         List<String> stringList = new ArrayList<>();
         List<String[]> result = new ArrayList<>();
-        FileInputStream input = new FileInputStream(new File("c:/demo/aa_test.xls"));
+        FileInputStream input = new FileInputStream(new File(url));
         HSSFWorkbook workbook = new HSSFWorkbook(input);
         HSSFSheet sheet = workbook.getSheetAt(0);
         //Sheet sheet  = workbook.getSheetAt(0); // Get Your Sheet.

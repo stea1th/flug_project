@@ -5,7 +5,12 @@
     <title>FlugProject</title>
 </head>
 <body>
-<h3>HiAll!!!</h3>
+<h3>Bitte geben Sie eine XLS-Datei:</h3>
+<form method="post" action="${pageContext.request.contextPath}">
+    <input type="text" name="file" />
+    <br/><br/>
+    <input type="submit" value="Upload" />
+</form>
 
 </body>
 </html>

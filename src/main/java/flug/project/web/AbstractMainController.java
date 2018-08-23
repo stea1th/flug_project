@@ -5,9 +5,11 @@ import flug.project.service.*;
 import flug.project.utils.ConverterUtil;
 import flug.project.utils.CountUtil;
 import flug.project.utils.DateTimeUtil;
+import flug.project.xlsreader.XLSReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -17,7 +19,7 @@ import java.util.Map;
 
 public abstract class AbstractMainController {
 
-    private List<String[]> xlsList;
+    //private List<String[]> xlsList;
 
     @Autowired
     private LandService landService;
@@ -65,9 +67,9 @@ public abstract class AbstractMainController {
     private List<Integer> buchungsListe;
 
 
-    public void setXlsList(List<String[]> xlsList) {
-        this.xlsList = xlsList;
-    }
+//    public void setXlsList(List<String[]> xlsList) {
+//        this.xlsList = xlsList;
+//    }
 
     private void init(){
         landMap = landService.getAll();
@@ -84,7 +86,10 @@ public abstract class AbstractMainController {
     }
 
 
-    public void saveAll(){
+    public void saveAll(String url) throws IOException {
+
+        List<String[]> xlsList = XLSReader.readXLS(url);
+        xlsList.remove(0);
         init();
         for(String[] arr : xlsList){
             int landId = saveLand(arr[24]);

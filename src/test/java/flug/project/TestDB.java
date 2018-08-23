@@ -17,7 +17,7 @@ public class TestDB {
 
     public static void main(String[] args)throws IOException {
 
-       /* List<String[]> xlsList = XLSReader.readXLS();
+       /* List<String[]> xlsList = flug.project.xlsreader.XLSReader.readXLS();
         xlsList.remove(0);
         saveAnredeUndPassagier(xlsList);*/
     }
