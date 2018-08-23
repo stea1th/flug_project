@@ -1,4 +1,4 @@
-package flug.project.repository.interfaces;
+package flug.project.repository;
 
 import java.util.List;
 

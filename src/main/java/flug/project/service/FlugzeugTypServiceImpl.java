@@ -1,7 +1,7 @@
 package flug.project.service;
 
 import flug.project.entity.FlugzeugTyp;
-import flug.project.repository.FlugzeugTypRepository;
+import flug.project.repository.jpa.FlugzeugTypRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

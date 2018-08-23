@@ -1,7 +1,7 @@
 package flug.project.service;
 
 import flug.project.entity.Linie;
-import flug.project.repository.LinieRepository;
+import flug.project.repository.jpa.LinieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -14,8 +14,8 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
-@Controller
-public class RestController {
+
+public abstract class AbstractMainController {
 
     private List<String[]> xlsList;
 

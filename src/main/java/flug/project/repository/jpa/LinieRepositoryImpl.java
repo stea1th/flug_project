@@ -1,4 +1,4 @@
-package flug.project.repository;
+package flug.project.repository.jpa;
 
 import flug.project.entity.Fluggesellschaft;
 import flug.project.entity.Flughafen;

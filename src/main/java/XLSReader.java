@@ -41,7 +41,7 @@ public class XLSReader {
                  int index = cell.getColumnIndex();
                  CellType cellType = cell.getCellTypeEnum();
                  if (count < index) {
-                     stringList.add("NULL");
+                     stringList.add("");
                      //System.out.print("NULL      " + count);
                      //System.out.print("\t");
                      count = index;

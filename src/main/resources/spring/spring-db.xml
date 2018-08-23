@@ -16,7 +16,7 @@
         <jdbc:script encoding="utf-8" location="classpath:db/${jdbc.initLocation}"/>
     </jdbc:initialize-database>
 
-    <context:component-scan base-package="flug.project.**.repository"/>
+    <context:component-scan base-package="flug.project.**.repository.jpa"/>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"

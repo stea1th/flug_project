@@ -1,6 +1,6 @@
-package flug.project.repository;
+package flug.project.repository.jpa;
 
-import flug.project.entity.Adresse;
+import flug.project.entity.Land;
 import flug.project.entity.Ort;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,22 +11,22 @@ import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
-public class AdresseRepositoryImpl implements AdresseRepository {
+public class OrtRepositoryImpl implements OrtRepository {
 
     @PersistenceContext
     private EntityManager em;
 
     @Override
     @Transactional
-    public Adresse save(Adresse adresse, Integer... ortId) {
-        adresse.setOrtById(em.getReference(Ort.class, ortId[0]));
-        em.persist(adresse);
-        return adresse;
+    public Ort save(Ort ort, Integer... landId) {
+        ort.setLandByLId(em.getReference(Land.class, landId[0]));
+        em.persist(ort);
+        return ort;
     }
 
     @Override
-    public List<Adresse> getAll() {
-        return em.createNamedQuery(Adresse.GET_ALL, Adresse.class)
+    public List<Ort> getAll() {
+        return em.createNamedQuery(Ort.GET_ALL, Ort.class)
                 .getResultList();
     }
 }

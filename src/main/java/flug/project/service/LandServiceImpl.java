@@ -1,7 +1,7 @@
 package flug.project.service;
 
 import flug.project.entity.Land;
-import flug.project.repository.LandRepository;
+import flug.project.repository.jpa.LandRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

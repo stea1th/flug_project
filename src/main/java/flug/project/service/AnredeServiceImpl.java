@@ -1,7 +1,7 @@
 package flug.project.service;
 
 import flug.project.entity.Anrede;
-import flug.project.repository.AnredeRepository;
+import flug.project.repository.jpa.AnredeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

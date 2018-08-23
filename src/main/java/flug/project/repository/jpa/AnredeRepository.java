@@ -1,7 +1,7 @@
-package flug.project.repository;
+package flug.project.repository.jpa;
 
 import flug.project.entity.Anrede;
-import flug.project.repository.interfaces.MainRepositoryInterface;
+import flug.project.repository.MainRepositoryInterface;
 
 public interface AnredeRepository extends MainRepositoryInterface<Anrede, Integer, Anrede> {
 

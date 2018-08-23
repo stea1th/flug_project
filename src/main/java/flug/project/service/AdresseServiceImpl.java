@@ -1,14 +1,13 @@
 package flug.project.service;
 
 import flug.project.entity.Adresse;
-import flug.project.repository.AdresseRepository;
+import flug.project.repository.jpa.AdresseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class AdresseServiceImpl implements AdresseService {

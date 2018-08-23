@@ -1,7 +1,6 @@
 package flug.project.service;
 
 import flug.project.entity.Flug;
-import flug.project.service.interfaces.MainServiceInterface;
 
 import java.time.LocalDate;
 

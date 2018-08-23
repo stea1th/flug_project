@@ -1,7 +1,7 @@
 package flug.project.service;
 
 import flug.project.entity.Passagier;
-import flug.project.repository.PassagierRepository;
+import flug.project.repository.jpa.PassagierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

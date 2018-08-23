@@ -1,6 +1,6 @@
-package flug.project.repository;
+package flug.project.repository.jpa;
 
-import flug.project.entity.FlugzeugTyp;
+import flug.project.entity.Land;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,28 +10,26 @@ import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
-public class FlugzeugTypRepositoryImpl implements FlugzeugTypRepository {
+public class LandRepositoryImpl implements LandRepository {
 
     @PersistenceContext
     private EntityManager em;
 
     @Override
     @Transactional
-    public FlugzeugTyp save(FlugzeugTyp flugzeugTyp) {
-        em.persist(flugzeugTyp);
-        return flugzeugTyp;
+    public Land save(Land land) {
+        em.persist(land);
+        return land;
     }
 
     @Override
-    public FlugzeugTyp save(FlugzeugTyp flugzeugTyp, String... arr) {
+    public Land save(Land land, Integer... arr) {
         return null;
     }
 
     @Override
-    public List<FlugzeugTyp> getAll() {
-        return em.createNamedQuery(FlugzeugTyp.GET_ALL, FlugzeugTyp.class)
+    public List<Land> getAll() {
+        return em.createNamedQuery(Land.GET_ALL, Land.class)
                 .getResultList();
     }
-
-
 }

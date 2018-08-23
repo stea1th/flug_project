@@ -1,4 +1,4 @@
-package flug.project.service.interfaces;
+package flug.project.service;
 
 import java.util.List;
 import java.util.Map;

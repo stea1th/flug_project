@@ -1,6 +1,6 @@
-package flug.project.repository;
+package flug.project.repository.jpa;
 
-import flug.project.entity.Land;
+import flug.project.entity.Anrede;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,26 +10,26 @@ import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
-public class LandRepositoryImpl implements LandRepository {
+public class AnredeRepositoryImpl implements AnredeRepository {
 
     @PersistenceContext
     private EntityManager em;
 
     @Override
     @Transactional
-    public Land save(Land land) {
-        em.persist(land);
-        return land;
+    public Anrede save(Anrede anrede) {
+        em.persist(anrede);
+        return anrede;
     }
 
     @Override
-    public Land save(Land land, Integer... arr) {
+    public Anrede save(Anrede anrede, Integer... arr) {
         return null;
     }
 
     @Override
-    public List<Land> getAll() {
-        return em.createNamedQuery(Land.GET_ALL, Land.class)
+    public List<Anrede> getAll() {
+        return em.createNamedQuery(Anrede.GET_ALL, Anrede.class)
                 .getResultList();
     }
 }

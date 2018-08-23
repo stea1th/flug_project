@@ -1,10 +1,7 @@
-package flug.project.repository;
+package flug.project.repository.jpa;
 
 import flug.project.entity.Fluggesellschaft;
-import flug.project.repository.interfaces.MainRepositoryInterface;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import flug.project.repository.MainRepositoryInterface;
 
 public interface FluggeselschaftRepository extends MainRepositoryInterface<Fluggesellschaft, Integer, String> {
 

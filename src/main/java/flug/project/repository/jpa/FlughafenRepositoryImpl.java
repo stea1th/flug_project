@@ -1,4 +1,4 @@
-package flug.project.repository;
+package flug.project.repository.jpa;
 
 import flug.project.entity.Flughafen;
 import flug.project.entity.Ort;

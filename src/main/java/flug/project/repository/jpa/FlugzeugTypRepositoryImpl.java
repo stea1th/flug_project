@@ -1,6 +1,6 @@
-package flug.project.repository;
+package flug.project.repository.jpa;
 
-import flug.project.entity.Anrede;
+import flug.project.entity.FlugzeugTyp;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,26 +10,28 @@ import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
-public class AnredeRepositoryImpl implements AnredeRepository {
+public class FlugzeugTypRepositoryImpl implements FlugzeugTypRepository {
 
     @PersistenceContext
     private EntityManager em;
 
     @Override
     @Transactional
-    public Anrede save(Anrede anrede) {
-        em.persist(anrede);
-        return anrede;
+    public FlugzeugTyp save(FlugzeugTyp flugzeugTyp) {
+        em.persist(flugzeugTyp);
+        return flugzeugTyp;
     }
 
     @Override
-    public Anrede save(Anrede anrede, Integer... arr) {
+    public FlugzeugTyp save(FlugzeugTyp flugzeugTyp, String... arr) {
         return null;
     }
 
     @Override
-    public List<Anrede> getAll() {
-        return em.createNamedQuery(Anrede.GET_ALL, Anrede.class)
+    public List<FlugzeugTyp> getAll() {
+        return em.createNamedQuery(FlugzeugTyp.GET_ALL, FlugzeugTyp.class)
                 .getResultList();
     }
+
+
 }

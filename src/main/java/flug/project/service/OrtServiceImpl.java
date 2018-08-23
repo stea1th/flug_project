@@ -1,7 +1,7 @@
 package flug.project.service;
 
 import flug.project.entity.Ort;
-import flug.project.repository.OrtRepository;
+import flug.project.repository.jpa.OrtRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
