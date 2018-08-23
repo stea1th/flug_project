@@ -2,16 +2,39 @@ package flug.project.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
+@NamedQuery(name = BuchungsDaten.GET_ALL, query = "SELECT bd.nummer FROM BuchungsDaten bd ")
 public class BuchungsDaten {
+    private int bdId;
     private int nummer;
-    private int pId;
-    private int flId;
-    private Date datum;
+    private LocalDate datum;
+    private Passagier passagier;
+    private Flug flug;
+
+    public static final String GET_ALL = "BuchungsDaten.getAll";
+
+    public BuchungsDaten() {
+    }
+
+    public BuchungsDaten(int bdId, int nummer, LocalDate datum) {
+        this.bdId = bdId;
+        this.nummer = nummer;
+        this.datum = datum;
+    }
 
     @Id
+    @Column(name = "BD_ID", nullable = false)
+    public int getBdId() {
+        return bdId;
+    }
+
+    public void setBdId(int bdId) {
+        this.bdId = bdId;
+    }
+
     @Column(name = "Nummer", nullable = false)
     public int getNummer() {
         return nummer;
@@ -21,34 +44,34 @@ public class BuchungsDaten {
         this.nummer = nummer;
     }
 
-    @Id
-    @Column(name = "P_ID", nullable = false)
-    public int getpId() {
-        return pId;
-    }
-
-    public void setpId(int pId) {
-        this.pId = pId;
-    }
-
-    @Id
-    @Column(name = "FL_ID", nullable = false)
-    public int getFlId() {
-        return flId;
-    }
-
-    public void setFlId(int flId) {
-        this.flId = flId;
-    }
-
     @Basic
     @Column(name = "Datum", nullable = false)
-    public Date getDatum() {
+    public LocalDate getDatum() {
         return datum;
     }
 
-    public void setDatum(Date datum) {
+    public void setDatum(LocalDate datum) {
         this.datum = datum;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "P_ID", referencedColumnName = "P_ID")
+    public Passagier getPassagierById() {
+        return passagier;
+    }
+
+    public void setPassagierById(Passagier passagier) {
+        this.passagier = passagier;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "FL_ID", referencedColumnName = "FL_ID")
+    public Flug getFlugById() {
+        return flug;
+    }
+
+    public void setFlugById(Flug flug) {
+        this.flug = flug;
     }
 
     @Override
@@ -56,14 +79,15 @@ public class BuchungsDaten {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BuchungsDaten that = (BuchungsDaten) o;
-        return nummer == that.nummer &&
-                pId == that.pId &&
-                flId == that.flId &&
-                Objects.equals(datum, that.datum);
+        return bdId == that.bdId &&
+                nummer == that.nummer &&
+                Objects.equals(datum, that.datum) &&
+                Objects.equals(passagier, that.passagier) &&
+                Objects.equals(flug, that.flug);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nummer, pId, flId, datum);
+        return Objects.hash(bdId, nummer, datum, passagier, flug);
     }
 }

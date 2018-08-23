@@ -71,7 +71,7 @@ create table Adresse
 
 create table Passagier
 (
-  P_ID   int          not null
+  P_ID   int
     constraint P_ID_PK
     primary key,
   Name   varchar(100) not null,
@@ -127,14 +127,13 @@ create table Flug
 
 create table BuchungsDaten
 (
+  BD_ID int not null,
   Nummer int  not null,
+  Datum  date not null,
   P_ID   int  not null
     constraint P_ID_FK
     references Passagier,
   FL_ID  int  not null
     constraint FL_ID_FK
-    references Flug,
-  Datum  date not null,
-  constraint BD_PK
-  primary key (Nummer, P_ID, FL_ID)
-);
+    references Flug
+  );

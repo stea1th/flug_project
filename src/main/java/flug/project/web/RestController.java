@@ -2,6 +2,7 @@ package flug.project.web;
 
 import flug.project.entity.*;
 import flug.project.service.*;
+import flug.project.utils.ConverterUtil;
 import flug.project.utils.CountUtil;
 import flug.project.utils.DateTimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,8 @@ import org.springframework.stereotype.Controller;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 @Controller
 public class RestController {
@@ -51,6 +49,9 @@ public class RestController {
     @Autowired
     private FlugService flugService;
 
+    @Autowired
+    private BuchungsDatenService buchungsDatenService;
+
     private Map<String, Integer> landMap;
     private Map<String, Integer> ortMap;
     private Map<String, Integer> adresseMap;
@@ -61,6 +62,7 @@ public class RestController {
     private List<Integer> linIds;
     private Map<String, Integer> flugzeugTyps;
     private Map<LocalDate, Integer> flugs;
+    private List<Integer> buchungsListe;
 
 
     public void setXlsList(List<String[]> xlsList) {
@@ -78,6 +80,7 @@ public class RestController {
         linIds = linieService.getAllIds();
         flugzeugTyps = flugzeugTypService.getAll();
         flugs = flugService.getAll();
+        buchungsListe = buchungsDatenService.getAllIds();
     }
 
 
@@ -98,6 +101,7 @@ public class RestController {
             int linId = saveLinie(new String[]{arr[2], arr[9], vonFlug, bisFlug, fluggesId});
             int ftId = saveFlugzeugTyp(new String[]{arr[12], arr[15], arr[13]});
             int flId = saveFlug(ftId, linId, arr[10], arr[11]);
+            saveBuchungsDaten(arr[0], arr[16], arr[17], passId, flId);
         }
     }
 
@@ -129,11 +133,11 @@ public class RestController {
 
     private int saveAdresse(int ortId, String... arr){
         Integer id;
-        String adresse = arr[1]+" "+arr[0].replace(".0", "");
+        String adresse = arr[1]+" "+ConverterUtil.splitNull(arr[0]);
         if(adresseMap.containsKey(adresse)){
             id = adresseMap.get(adresse);
         }else{
-            Adresse a = new Adresse(CountUtil.getNewId(), arr[0].replace(".0", ""), arr[1]);
+            Adresse a = new Adresse(CountUtil.getNewId(), ConverterUtil.splitNull(arr[0]), arr[1]);
             id = a.getAdrId();
             adresseMap.put(adresse, id);
             adresseService.create(a, ortId);
@@ -155,7 +159,7 @@ public class RestController {
     }
 
     private int savePassagier(int anrId, int adrId, String... arr){
-        Integer id = Integer.valueOf(arr[0].replace(".0", ""));
+        Integer id = ConverterUtil.convertInt(arr[0]);
         if(!passagierIds.contains(id)){
             passagierService.create(new Passagier(id, arr[1]), anrId, adrId);
             passagierIds.add(id);
@@ -181,7 +185,7 @@ public class RestController {
     }
 
     private int saveLinie(String[] arr){
-        Integer id = Integer.valueOf(arr[0].replace(".0", ""));
+        Integer id = ConverterUtil.convertInt(arr[0]);
         String[] time = arr[1].split(":");
         LocalTime dauer = LocalTime.of(Integer.parseInt(time[0].trim()), Integer.parseInt(time[1].trim()));
         if(!linIds.contains(id)){
@@ -192,12 +196,12 @@ public class RestController {
     }
 
     private int saveFlugzeugTyp(String[] arr){
-        String bez = arr[0]+" "+arr[1].replace(".0", "");
+        String bez = arr[0]+" "+ConverterUtil.splitNull(arr[1]);
         Integer id;
         if(flugzeugTyps.containsKey(bez)){
             id = flugzeugTyps.get(bez);
         }else{
-            FlugzeugTyp ft = new FlugzeugTyp(CountUtil.getNewId(), arr[0], Integer.parseInt(arr[1].replace(".0", "")), arr[2]);
+            FlugzeugTyp ft = new FlugzeugTyp(CountUtil.getNewId(), arr[0], ConverterUtil.convertInt(arr[1]), arr[2]);
             id = ft.getFtId();
             flugzeugTyps.put(bez, id);
             flugzeugTypService.create(ft);
@@ -206,7 +210,7 @@ public class RestController {
     }
 
     private int saveFlug(int ftId, int linId, String... arr){
-        LocalDate date = DateTimeUtil.START_DATE.plus(Long.parseLong(arr[0].replace(".0", ""))-2, ChronoUnit.DAYS);
+        LocalDate date = DateTimeUtil.transformToDate(arr[0]);
         Integer id;
         if(flugs.containsKey(date)){
             id = flugs.get(date);
@@ -215,6 +219,17 @@ public class RestController {
             id = flug.getFlId();
             flugs.put(date, id);
             flugService.create(flug, ftId, linId);
+        }
+        return id;
+    }
+
+    private int saveBuchungsDaten(String fluggesId, String nummer, String datum, int passId, int flugId){
+        Integer id = null;
+        Integer num = ConverterUtil.convertInt(nummer);
+        if(!(fluggesIds.contains(fluggesId)&&buchungsListe.contains(num))){
+            BuchungsDaten bd = new BuchungsDaten(CountUtil.getNewId(), num, DateTimeUtil.transformToDate(datum));
+            id = bd.getBdId();
+            buchungsDatenService.create(bd, passId, flugId);
         }
         return id;
     }
