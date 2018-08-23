@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@IdClass(BuchungsDatenPK.class)
 public class BuchungsDaten {
     private int nummer;
     private int pId;

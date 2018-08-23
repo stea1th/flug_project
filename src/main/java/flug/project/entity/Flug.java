@@ -7,12 +7,24 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
+@NamedQuery(name = Flug.GET_ALL, query="SELECT fl FROM Flug fl ")
 public class Flug {
     private int flId;
     private LocalDate datum;
     private BigDecimal preis;
     private Linie linie;
     private FlugzeugTyp flugzeugTyp;
+
+    public static final String GET_ALL = "Flug.getAll";
+
+    public Flug() {
+    }
+
+    public Flug(int flId, LocalDate datum, BigDecimal preis) {
+        this.flId = flId;
+        this.datum = datum;
+        this.preis = preis;
+    }
 
     @Id
     @Column(name = "FL_ID", nullable = false)

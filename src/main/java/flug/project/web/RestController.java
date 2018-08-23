@@ -3,12 +3,18 @@ package flug.project.web;
 import flug.project.entity.*;
 import flug.project.service.*;
 import flug.project.utils.CountUtil;
+import flug.project.utils.DateTimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class RestController {
@@ -42,6 +48,9 @@ public class RestController {
     @Autowired
     private FlugzeugTypService flugzeugTypService;
 
+    @Autowired
+    private FlugService flugService;
+
     private Map<String, Integer> landMap;
     private Map<String, Integer> ortMap;
     private Map<String, Integer> adresseMap;
@@ -51,6 +60,7 @@ public class RestController {
     private List<String> fluggesIds;
     private List<Integer> linIds;
     private Map<String, Integer> flugzeugTyps;
+    private Map<LocalDate, Integer> flugs;
 
 
     public void setXlsList(List<String[]> xlsList) {
@@ -67,6 +77,7 @@ public class RestController {
         fluggesIds = fluggeselschaftService.getAllIds();
         linIds = linieService.getAllIds();
         flugzeugTyps = flugzeugTypService.getAll();
+        flugs = flugService.getAll();
     }
 
 
@@ -86,6 +97,7 @@ public class RestController {
 
             int linId = saveLinie(new String[]{arr[2], arr[9], vonFlug, bisFlug, fluggesId});
             int ftId = saveFlugzeugTyp(new String[]{arr[12], arr[15], arr[13]});
+            int flId = saveFlug(ftId, linId, arr[10], arr[11]);
         }
     }
 
@@ -189,6 +201,20 @@ public class RestController {
             id = ft.getFtId();
             flugzeugTyps.put(bez, id);
             flugzeugTypService.create(ft);
+        }
+        return id;
+    }
+
+    private int saveFlug(int ftId, int linId, String... arr){
+        LocalDate date = DateTimeUtil.START_DATE.plus(Long.parseLong(arr[0].replace(".0", ""))-2, ChronoUnit.DAYS);
+        Integer id;
+        if(flugs.containsKey(date)){
+            id = flugs.get(date);
+        }else{
+            Flug flug = new Flug(CountUtil.getNewId(), date, BigDecimal.valueOf(Double.parseDouble(arr[1])));
+            id = flug.getFlId();
+            flugs.put(date, id);
+            flugService.create(flug, ftId, linId);
         }
         return id;
     }
