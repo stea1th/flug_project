@@ -1,18 +1,18 @@
 package flug.project.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
 public class Flug {
     private int flId;
-    private Date datum;
+    private LocalDate datum;
     private BigDecimal preis;
+    private Linie linie;
+    private FlugzeugTyp flugzeugTyp;
 
     @Id
     @Column(name = "FL_ID", nullable = false)
@@ -26,11 +26,11 @@ public class Flug {
 
     @Basic
     @Column(name = "Datum", nullable = false)
-    public Date getDatum() {
+    public LocalDate getDatum() {
         return datum;
     }
 
-    public void setDatum(Date datum) {
+    public void setDatum(LocalDate datum) {
         this.datum = datum;
     }
 
@@ -42,6 +42,26 @@ public class Flug {
 
     public void setPreis(BigDecimal preis) {
         this.preis = preis;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "LI_ID", referencedColumnName = "LI_ID", nullable = false)
+    public Linie getLinie() {
+        return linie;
+    }
+
+    public void setLinie(Linie linie) {
+        this.linie = linie;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "FT_ID", referencedColumnName = "FT_ID", nullable = false)
+    public FlugzeugTyp getFlugzeugTyp() {
+        return flugzeugTyp;
+    }
+
+    public void setFlugzeugTyp(FlugzeugTyp flugzeugTyp) {
+        this.flugzeugTyp = flugzeugTyp;
     }
 
     @Override

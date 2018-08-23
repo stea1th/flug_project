@@ -12,11 +12,12 @@ drop table FlugzeugTyp;
 
 create table FlugzeugTyp
 (
+  FT_ID   int   not null
+  constraint FT_ID_PK
+  primary key,
   Typ        varchar(15) not null,
   Kapaz      int         not null,
   Hersteller varchar(50) not null,
-  constraint FlugzeugTyp_PK
-  primary key (Typ, Kapaz)
 );
 
 create table Fluggesellschaft
@@ -86,9 +87,7 @@ create table Flughafen
 (
   FH_ID char(3) not null
     constraint FH_ID_PK
-    primary key
-    constraint FH_ID_check
-    check ([FH_ID] like '[A-Z][A-Z][A-Z]'),
+    primary key,
   O_ID  int     not null
     constraint O_ID_Flugha_FK
     references Ort
@@ -113,7 +112,7 @@ create table Linie
 
 create table Flug
 (
-  FL_ID int identity
+  FL_ID int
     constraint FL_ID_PK
     primary key,
   Datum date          not null,
@@ -123,8 +122,9 @@ create table Flug
   LI_ID int           not null
     constraint FL_Linie_FK
     references Linie,
-  constraint FL_Flugzeug_FK
-  foreign key (Typ, Kapaz) references FlugzeugTyp
+  FT_ID int           not null
+    constraint FL_Flugzeug_FK
+   references FlugzeugTyp
 );
 
 create table BuchungsDaten

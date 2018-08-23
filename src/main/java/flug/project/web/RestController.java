@@ -39,6 +39,9 @@ public class RestController {
     @Autowired
     private LinieService linieService;
 
+    @Autowired
+    private FlugzeugTypService flugzeugTypService;
+
     private Map<String, Integer> landMap;
     private Map<String, Integer> ortMap;
     private Map<String, Integer> adresseMap;
@@ -47,6 +50,7 @@ public class RestController {
     private List<String> flughafenIds;
     private List<String> fluggesIds;
     private List<Integer> linIds;
+    private Map<String, Integer> flugzeugTyps;
 
 
     public void setXlsList(List<String[]> xlsList) {
@@ -62,6 +66,7 @@ public class RestController {
         flughafenIds = flughafenService.getAllIds();
         fluggesIds = fluggeselschaftService.getAllIds();
         linIds = linieService.getAllIds();
+        flugzeugTyps = flugzeugTypService.getAll();
     }
 
 
@@ -80,6 +85,7 @@ public class RestController {
             String fluggesId = saveFluggeselschaft(arr[0], arr[1]);
 
             int linId = saveLinie(new String[]{arr[2], arr[9], vonFlug, bisFlug, fluggesId});
+            int ftId = saveFlugzeugTyp(new String[]{arr[12], arr[15], arr[13]});
         }
     }
 
@@ -169,6 +175,20 @@ public class RestController {
         if(!linIds.contains(id)){
             linieService.create(new Linie(id, dauer), arr[2], arr[3], arr[4]);
             linIds.add(id);
+        }
+        return id;
+    }
+
+    private int saveFlugzeugTyp(String[] arr){
+        String bez = arr[0]+" "+arr[1].replace(".0", "");
+        Integer id;
+        if(flugzeugTyps.containsKey(bez)){
+            id = flugzeugTyps.get(bez);
+        }else{
+            FlugzeugTyp ft = new FlugzeugTyp(CountUtil.getNewId(), arr[0], Integer.parseInt(arr[1].replace(".0", "")), arr[2]);
+            id = ft.getFtId();
+            flugzeugTyps.put(bez, id);
+            flugzeugTypService.create(ft);
         }
         return id;
     }
