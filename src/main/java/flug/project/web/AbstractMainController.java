@@ -13,11 +13,22 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Map;
 
 
 public abstract class AbstractMainController {
+
+    private  String url;
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
+    }
 
     //private List<String[]> xlsList;
 
@@ -192,7 +203,7 @@ public abstract class AbstractMainController {
     private int saveLinie(String[] arr){
         Integer id = ConverterUtil.convertInt(arr[0]);
         String[] time = arr[1].split(":");
-        LocalTime dauer = LocalTime.of(Integer.parseInt(time[0].trim()), Integer.parseInt(time[1].trim()));
+        LocalTime dauer = LocalTime.of(Integer.parseInt(time[0].trim()), Integer.parseInt(time[1].trim())).truncatedTo(ChronoUnit.MINUTES);
         if(!linIds.contains(id)){
             linieService.create(new Linie(id, dauer), arr[2], arr[3], arr[4]);
             linIds.add(id);

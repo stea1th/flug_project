@@ -7,13 +7,13 @@
 </head>
 <body>
 <h3>Bitte geben Sie eine XLS-Datei:</h3>
-<form method="post" action="upload">
+<form method="post" action="/upload">
     <input type="text" name="text" />
     <br/><br/>
     <input type="submit" value="Upload"/>
 </form>
 
-<c:set var="message" value="${mess}"/>
+<c:set var="message" value="${ber}"/>
 <c:if test="${message.length()>0}">
     <div><p><c:out value="${message}"/></p></div>
 </c:if>
