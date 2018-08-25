@@ -28,14 +28,15 @@ public class FlugController extends AbstractMainController {
 
     @PostMapping("/upload")
     public String uploadFile(HttpServletRequest request,
-                             Model model) throws IOException {
+                             Model model) {
         String text = request.getParameter("text");
-
-//        redirectAttributes.addFlashAttribute("message",
-//                "You successfully uploaded "+file.getName()+"!");
-        //System.out.println("Hallo"+text);
-        saveAll(text);
-        model.addAttribute("mess", text);
+        try {
+            saveAll(text);
+        } catch (IOException e) {
+            model.addAttribute("mess", "Falsche File/Daten err");
+            return "index";
+        }
+        model.addAttribute("mess", "Die Daten aus "+text+" wurde gespeichert!");
         return "index";
     }
 

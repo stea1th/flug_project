@@ -18,9 +18,10 @@ import java.util.List;
 public class XLSReader {
 
      public static List<String[]> readXLS(String url) throws IOException{
+         String x = url.replace("\\", "/");
         List<String> stringList = new ArrayList<>();
         List<String[]> result = new ArrayList<>();
-        FileInputStream input = new FileInputStream(new File(url));
+        FileInputStream input = new FileInputStream(new File(x));
         HSSFWorkbook workbook = new HSSFWorkbook(input);
         HSSFSheet sheet = workbook.getSheetAt(0);
         //Sheet sheet  = workbook.getSheetAt(0); // Get Your Sheet.

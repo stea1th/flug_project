@@ -7,7 +7,6 @@ import flug.project.utils.CountUtil;
 import flug.project.utils.DateTimeUtil;
 import flug.project.xlsreader.XLSReader;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -18,8 +17,6 @@ import java.util.Map;
 
 
 public abstract class AbstractMainController {
-
-    //private List<String[]> xlsList;
 
     @Autowired
     private LandService landService;
@@ -66,11 +63,6 @@ public abstract class AbstractMainController {
     private Map<LocalDate, Integer> flugs;
     private List<Integer> buchungsListe;
 
-
-//    public void setXlsList(List<String[]> xlsList) {
-//        this.xlsList = xlsList;
-//    }
-
     private void init(){
         landMap = landService.getAll();
         ortMap = ortService.getAll();
@@ -87,7 +79,6 @@ public abstract class AbstractMainController {
 
 
     public void saveAll(String url) throws IOException {
-
         List<String[]> xlsList = XLSReader.readXLS(url);
         xlsList.remove(0);
         init();
@@ -238,21 +229,4 @@ public abstract class AbstractMainController {
         }
         return id;
     }
-
-    /*for(String[] arr : xlsList){
-        Integer id;
-        Integer pId = Integer.parseInt(arr[0]);
-        if(anredeMap.containsKey(arr[1])){
-            id = anredeMap.get(arr[1]);
-        }else{
-            Anrede an = new Anrede(flug.project.utils.CountUtil.getNewId(), arr[1]);
-            anredeMap.put(an.getBezeichnung(), an.getId());
-            anredeRestController.create(an);
-            id = an.getId();
-        }
-        if(!passIds.contains(pId)){
-            passIds.add(pId);
-            passagierRestController.create(new Passagier(pId, arr[2]), id);
-        }
-    }*/
 }
