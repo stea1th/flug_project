@@ -6,8 +6,6 @@ $(document).ready(function(){
 
     function ajaxPost(){
         var formData = $("#filename").val();
-        //     filename : $("#filename").val()
-        // }
 
         $.ajax({
             type : "POST",

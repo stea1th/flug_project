@@ -114,12 +114,8 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-        <!--&lt;!&ndash;jQuery&ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>org.webjars.npm</groupId>-->
-            <!--<artifactId>jQuery</artifactId>-->
-            <!--<version>1.7.4</version>-->
-        <!--</dependency>-->
+
+
 
     </dependencies>
     <profiles>
