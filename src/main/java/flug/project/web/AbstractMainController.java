@@ -79,10 +79,8 @@ public abstract class AbstractMainController {
 
 
     public void saveAll(String url) throws IOException {
-        List<String[]> xlsList = XLSReader.readXLS(url);
-        xlsList.remove(0);
         init();
-        for(String[] arr : xlsList){
+        for(String[] arr : XLSReader.readXLS(ConverterUtil.convertToUrl(url))){
             int landId = saveLand(arr[24]);
             int ortId = saveOrt(arr[22], landId);
             int adrId = saveAdresse(ortId, arr[21], arr[23]);

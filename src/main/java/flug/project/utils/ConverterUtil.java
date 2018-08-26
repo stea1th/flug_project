@@ -10,4 +10,8 @@ public class ConverterUtil {
         return s.replace(".0", "");
     }
 
+    public static String convertToUrl(String s){
+        return s.replace("\"", "").trim();
+    }
+
 }

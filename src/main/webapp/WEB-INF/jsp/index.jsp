@@ -4,18 +4,10 @@
 <html>
 <head>
     <title>FlugProject</title>
-
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/preloader.css">
-
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(window).on('load', function () {
-            var $preloader = $('#page-preloader'),
-                $spinner   = $preloader.find('.spinner');
-            // $spinner.fadeOut(5000);
-            $preloader.delay(3000).fadeOut('slow');
-        });
-    </script>
+    <script src="${pageContext.request.contextPath}/resources/js/preloader.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/postrequest.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
 </head>
 <body>
@@ -26,22 +18,25 @@
         <small>warten Sie...</small>
     </div>
 </div>
-<form method="post" action="upload">
+<form class="form-inline" id="customerForm">
+    <div class="form-group">
     <label>
-        <input type="text" name="text" required />
+        <input type="text" class="form-control" id="filename" required />
         <div class="label-text">Bitte geben Sie eine XLS-Datei ein</div>
     </label>
-    <button type="submit">Submit</button>
-</form>
-<br>
-<br>
-<form>
-    <div><c:set var="message" value="${mess}"/></div>
-    <div class="text"><c:if test="${message.length()>0}">
-        <div><p><c:out value="${message}"/></p></div>
-    </c:if>
     </div>
+    <button type="submit" class="btn btn-default">Submit</button>
 </form>
+<br>
+<br>
+<div id="postResultDiv"></div>
+<%--<form>--%>
+    <%--<div><c:set var="message" value="${mess}"/></div>--%>
+    <%--<div class="text"><c:if test="${message.length()>0}">--%>
+        <%--<div><p><c:out value="${message}"/></p></div>--%>
+    <%--</c:if>--%>
+    <%--</div>--%>
+<%--</form>--%>
 <br>
 <br>
 </body>
