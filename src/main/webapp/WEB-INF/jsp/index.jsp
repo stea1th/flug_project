@@ -25,6 +25,9 @@
         <small>warten Sie...</small>
     </div>
 </div>
+<br>
+<br>
+<%--<hr style="background-color: #797979">--%>
 <form class="form-inline" id="customerForm" >
     <div class="form-group">
     <label>
