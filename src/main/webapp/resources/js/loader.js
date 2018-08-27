@@ -1,4 +1,3 @@
-$body = $("body");
 
 $(document).ajaxStart(function(){
     event.preventDefault();

@@ -6,7 +6,14 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@NamedQuery(name = BuchungsDaten.GET_ALL, query = "SELECT bd.nummer FROM BuchungsDaten bd ")
+@NamedQueries({
+        @NamedQuery(name = BuchungsDaten.GET_ALL, query = "SELECT bd.nummer FROM BuchungsDaten bd "),
+        @NamedQuery(name = BuchungsDaten.GET_BD_WITH_FLUGG, query = "SELECT bd FROM BuchungsDaten bd " +
+                "JOIN bd.flugById f  " +
+                "JOIN f.linie l " +
+                "JOIN l.fluggesellschaftByFgId fg " +
+                "WHERE bd.nummer = ?1 AND fg.fgId = ?2 ")
+})
 public class BuchungsDaten {
     private int bdId;
     private int nummer;
@@ -15,6 +22,7 @@ public class BuchungsDaten {
     private Flug flug;
 
     public static final String GET_ALL = "BuchungsDaten.getAll";
+    public static final String GET_BD_WITH_FLUGG = "BuchungsDaten.getBdWithFlugg";
 
     public BuchungsDaten() {
     }

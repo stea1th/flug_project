@@ -87,7 +87,9 @@ create table Flughafen
 (
   FH_ID char(3) not null
     constraint FH_ID_PK
-    primary key,
+    primary key
+    constraint FH_ID_check
+    check ([FH_ID] like '[A-Z][A-Z][A-Z]'),
   O_ID  int     not null
     constraint O_ID_Flugha_FK
     references Ort

@@ -1,7 +1,10 @@
 package flug.project.web;
 
-import flug.project.message.Response;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
@@ -17,6 +20,13 @@ public class RestWebController extends AbstractMainController {
             super.saveAll(url);
         } catch (IOException e) {
             return "Error";
+        } catch (NullPointerException e) {
+            //return "Null";
+            e.printStackTrace();
+        }catch (NumberFormatException | DataIntegrityViolationException e) {
+            return "Format";
+        } catch (Exception e){
+            e.printStackTrace();
         }
         return "Done";
     }

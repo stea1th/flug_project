@@ -61,7 +61,6 @@ public abstract class AbstractMainController {
     private List<Integer> linIds;
     private Map<String, Integer> flugzeugTyps;
     private Map<LocalDate, Integer> flugs;
-    private List<Integer> buchungsListe;
 
     private void init(){
         landMap = landService.getAll();
@@ -74,7 +73,6 @@ public abstract class AbstractMainController {
         linIds = linieService.getAllIds();
         flugzeugTyps = flugzeugTypService.getAll();
         flugs = flugService.getAll();
-        buchungsListe = buchungsDatenService.getAllIds();
     }
 
 
@@ -217,14 +215,11 @@ public abstract class AbstractMainController {
         return id;
     }
 
-    private int saveBuchungsDaten(String fluggesId, String nummer, String datum, int passId, int flugId){
-        Integer id = null;
+    private void saveBuchungsDaten(String fluggesId, String nummer, String datum, int passId, int flugId){
         Integer num = ConverterUtil.convertInt(nummer);
-        if(!(fluggesIds.contains(fluggesId)&&buchungsListe.contains(num))){
+        if(buchungsDatenService.get(num, fluggesId).size()==0){
             BuchungsDaten bd = new BuchungsDaten(CountUtil.getNewId(), num, DateTimeUtil.transformToDate(datum));
-            id = bd.getBdId();
             buchungsDatenService.create(bd, passId, flugId);
         }
-        return id;
     }
 }

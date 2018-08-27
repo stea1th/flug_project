@@ -24,6 +24,11 @@ public class BuchungsDatenServiceImpl implements BuchungsDatenService {
     }
 
     @Override
+    public List<BuchungsDaten> get(Integer nummer, String flugId) {
+        return repository.getBuchungsDaten(nummer, flugId);
+    }
+
+    @Override
     public Map<Integer, Integer> getAll() {
         return null;
     }
