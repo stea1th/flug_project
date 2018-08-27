@@ -12,12 +12,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
 </head>
 <body>
-<div class="modal"><!-- Place at bottom of page --></div>
-<%--<div id="loading"></div>--%>
-<div id="loading" hidden>
-    <p><img src="http://i.stack.imgur.com/FhHRx.gif" />Please Wait</p>
-</div>
-
 <div id="page-preloader">
     <div class="contpre">
         <span class="spinner"></span>
@@ -27,7 +21,7 @@
 </div>
 <br>
 <br>
-<%--<hr style="background-color: #797979">--%>
+<br>
 <form class="form-inline" id="customerForm" >
     <div class="form-group">
     <label>
@@ -40,15 +34,7 @@
 <br>
 <br>
 <div id="postResultDiv"></div>
-<%--<form>--%>
-    <%--<div><c:set var="message" value="${mess}"/></div>--%>
-    <%--<div class="text"><c:if test="${message.length()>0}">--%>
-        <%--<div><p><c:out value="${message}"/></p></div>--%>
-    <%--</c:if>--%>
-    <%--</div>--%>
-<%--</form>--%>
 <br>
 <br>
-<div id="test1"></div>
 </body>
 </html>

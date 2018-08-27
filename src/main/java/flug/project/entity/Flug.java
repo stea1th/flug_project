@@ -12,6 +12,10 @@ public class Flug {
     private int flId;
     private LocalDate datum;
     private BigDecimal preis;
+    private int belPlatz;
+
+
+
     private Linie linie;
     private FlugzeugTyp flugzeugTyp;
 
@@ -20,10 +24,11 @@ public class Flug {
     public Flug() {
     }
 
-    public Flug(int flId, LocalDate datum, BigDecimal preis) {
+    public Flug(int flId, LocalDate datum, BigDecimal preis, int belPlatz) {
         this.flId = flId;
         this.datum = datum;
         this.preis = preis;
+        this.belPlatz = belPlatz;
     }
 
     @Id
@@ -54,6 +59,16 @@ public class Flug {
 
     public void setPreis(BigDecimal preis) {
         this.preis = preis;
+    }
+
+    @Basic
+    @Column(name = "Platz", nullable = false)
+    public int getBelPlatz() {
+        return belPlatz;
+    }
+
+    public void setBelPlatz(int belPlatz) {
+        this.belPlatz = belPlatz;
     }
 
     @ManyToOne

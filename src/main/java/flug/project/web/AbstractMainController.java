@@ -92,7 +92,7 @@ public abstract class AbstractMainController {
 
             int linId = saveLinie(new String[]{arr[2], arr[9], vonFlug, bisFlug, fluggesId});
             int ftId = saveFlugzeugTyp(new String[]{arr[12], arr[15], arr[13]});
-            int flId = saveFlug(ftId, linId, arr[10], arr[11]);
+            int flId = saveFlug(ftId, linId, arr[10], arr[11], arr[14]);
             saveBuchungsDaten(arr[0], arr[16], arr[17], passId, flId);
         }
     }
@@ -207,7 +207,7 @@ public abstract class AbstractMainController {
         if(flugs.containsKey(date)){
             id = flugs.get(date);
         }else{
-            Flug flug = new Flug(CountUtil.getNewId(), date, BigDecimal.valueOf(Double.parseDouble(arr[1])));
+            Flug flug = new Flug(CountUtil.getNewId(), date, BigDecimal.valueOf(Double.parseDouble(arr[1])), ConverterUtil.convertInt(arr[2]));
             id = flug.getFlId();
             flugs.put(date, id);
             flugService.create(flug, ftId, linId);
