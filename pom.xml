@@ -58,12 +58,12 @@
             <artifactId>poi</artifactId>
             <version>${apache.poi.version}</version>
         </dependency>
-        <!--DB-->
-        <!--<dependency>
-            <groupId>jtds</groupId>
-            <artifactId>jtds</artifactId>
-            <version>1.2</version>
-        </dependency>-->
+        <!--c3p0 Connection Pool-->
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.5.2</version>
+        </dependency>
         <!--Spring-->
         <dependency>
             <groupId>org.springframework</groupId>

@@ -115,6 +115,7 @@ create table Flug
     primary key,
   Datum date          not null,
   Preis decimal(8, 2) not null,
+  Platz int           not null,
   LI_ID int           not null
     constraint FL_Linie_FK
     references Linie,
