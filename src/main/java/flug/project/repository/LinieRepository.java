@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface LinieRepository extends MainRepositoryInterface<Linie, String, Integer > {
 
-    Linie getById(Integer... arr);
+
 }

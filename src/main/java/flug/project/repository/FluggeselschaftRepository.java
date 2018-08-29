@@ -11,5 +11,4 @@ public interface FluggeselschaftRepository extends MainRepositoryInterface<Flugg
     Fluggesellschaft save(Fluggesellschaft fluggesellschaft);
 
 
-    Fluggesellschaft getById(String... arr);
 }

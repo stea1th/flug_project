@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface FlughafenRepository extends MainRepositoryInterface<Flughafen, String, String> {
 
-    Flughafen getById(String... arr);
+
 }
