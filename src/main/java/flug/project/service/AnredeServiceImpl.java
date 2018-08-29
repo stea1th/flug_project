@@ -26,10 +26,7 @@ public class AnredeServiceImpl implements AnredeService {
 
     @Override
     public Anrede get(String... arr) {
-        List<Anrede> anredes = repository.get(arr);
-        if(anredes.isEmpty())
-            return null;
-        return anredes.get(0);
+        return repository.getById(arr);
     }
 
     public Anrede create(Anrede anrede) {

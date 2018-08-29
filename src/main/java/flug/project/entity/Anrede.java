@@ -3,53 +3,38 @@ package flug.project.entity;
 import javax.persistence.*;
 import java.util.Objects;
 
-@NamedQuery(name=Anrede.GET, query = "SELECT an FROM Anrede an WHERE an.bezeichnung = ?1 ")
 @Entity
 public class Anrede {
-    private int aId;
-    private String bezeichnung;
+    private String aId;
 
     public Anrede() {
     }
 
-    public Anrede(int aId, String bezeichnung) {
+    public Anrede(String aId) {
         this.aId = aId;
-        this.bezeichnung = bezeichnung;
     }
-
-    public static final String GET = "Anrede.get";
 
     @Id
     @Column(name = "A_ID", nullable = false)
-    public int getaId() {
+    public String getaId() {
         return aId;
     }
 
-    public void setaId(int aId) {
+    public void setaId(String aId) {
         this.aId = aId;
-    }
-
-    @Basic
-    @Column(name = "Bezeichnung", nullable = false, length = 40)
-    public String getBezeichnung() {
-        return bezeichnung;
-    }
-
-    public void setBezeichnung(String bezeichnung) {
-        this.bezeichnung = bezeichnung;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Anrede)) return false;
         Anrede anrede = (Anrede) o;
-        return aId == anrede.aId &&
-                Objects.equals(bezeichnung, anrede.bezeichnung);
+        return Objects.equals(aId, anrede.aId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(aId, bezeichnung);
+
+        return Objects.hash(aId);
     }
 }

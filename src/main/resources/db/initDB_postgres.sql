@@ -30,10 +30,9 @@ create table Fluggesellschaft
 
 create table Anrede
 (
-  A_ID        int
+  A_ID        varchar(40)
     constraint A_ID_PK
-    primary key,
-  Bezeichnung varchar(40) not null
+    primary key
 );
 
 create table Land
@@ -71,7 +70,7 @@ create table Passagier
     constraint P_ID_PK
     primary key,
   Name   varchar(100) not null,
-  A_ID   int
+  A_ID   varchar(40)
     constraint A_ID_Pass_FK
     references Anrede,
   Adr_ID int          not null

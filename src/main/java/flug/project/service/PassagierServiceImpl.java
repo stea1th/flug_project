@@ -16,7 +16,7 @@ public class PassagierServiceImpl implements PassagierService {
     }
 
     @Override
-    public Passagier create(Passagier passagier, int anrId, int adrId) {
+    public Passagier create(Passagier passagier, String anrId, int adrId) {
         return repository.save(passagier, anrId, adrId);
     }
 

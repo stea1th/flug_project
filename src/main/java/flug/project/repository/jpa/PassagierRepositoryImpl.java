@@ -20,12 +20,8 @@ public class PassagierRepositoryImpl implements PassagierRepository {
     private EntityManager em;
 
     @Override
-    @Transactional
     public Passagier save(Passagier passagier, Integer... arr) {
-        passagier.setAnredeByAId(em.getReference(Anrede.class, arr[0]));
-        passagier.setAdresseByAdrId(em.getReference(Adresse.class, arr[1]));
-        em.persist(passagier);
-        return passagier;
+        return null;
     }
 
     @Override
@@ -36,5 +32,15 @@ public class PassagierRepositoryImpl implements PassagierRepository {
     @Override
     public Passagier getById(Integer... arr) {
         return em.find(Passagier.class, arr[0]);
+    }
+
+    @Override
+    @Transactional
+    public Passagier save(Passagier passagier, String anr, Integer adr) {
+        passagier.setAnredeByAId(em.getReference(Anrede.class, anr));
+        passagier.setAdresseByAdrId(em.getReference(Adresse.class, adr));
+        em.persist(passagier);
+        return passagier;
+
     }
 }

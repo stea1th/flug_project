@@ -30,13 +30,11 @@ public class AnredeRepositoryImpl implements AnredeRepository {
 
     @Override
     public List<Anrede> get(String... arr) {
-        return em.createNamedQuery(Anrede.GET, Anrede.class)
-                .setParameter(1, arr[0])
-                .getResultList();
+        return null;
     }
 
     @Override
     public Anrede getById(String... arr) {
-        return null;
+        return em.find(Anrede.class, arr[0]);
     }
 }

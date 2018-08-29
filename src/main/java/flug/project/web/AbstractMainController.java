@@ -53,7 +53,7 @@ public abstract class AbstractMainController {
             String landId = saveLand(arr[24]);
             String ortId = saveOrt(arr[22], landId);
             int adrId = saveAdresse(ortId, arr[21], arr[23]);
-            int anrId = saveAnrede(arr[19]);
+            String anrId = saveAnrede(arr[19]);
             int passId = savePassagier(anrId, adrId, arr[18], arr[20]);
 
             String vonFlug = saveFlughafen(arr[3], arr[4], arr[5]);
@@ -91,16 +91,14 @@ public abstract class AbstractMainController {
         return a.getAdrId();
     }
 
-    private int saveAnrede(String anrede){
-        Anrede an = anredeService.get(anrede);
-        if(an == null){
-            an = new Anrede(CountUtil.getNewId(), anrede);
-            anredeService.create(an);
+    private String saveAnrede(String anrede){
+        if(anredeService.get(anrede) == null){
+            anredeService.create(new Anrede(anrede));
         }
-        return an.getaId();
+        return anrede;
     }
 
-    private int savePassagier(int anrId, int adrId, String... arr){
+    private int savePassagier(String anrId, int adrId, String... arr){
         Integer id = ConverterUtil.convertInt(arr[0]);
         if(passagierService.get(id)== null){
             passagierService.create(new Passagier(id, arr[1]), anrId, adrId);

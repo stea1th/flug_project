@@ -9,4 +9,7 @@ import java.util.List;
 public interface PassagierRepository extends MainRepositoryInterface<Passagier, Integer, Integer> {
 
     Passagier getById(Integer... arr);
+
+
+    Passagier save(Passagier passagier, String anr, Integer adr);
 }

@@ -7,7 +7,6 @@ import java.util.Objects;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = BuchungsDaten.GET_ALL, query = "SELECT bd.nummer FROM BuchungsDaten bd "),
         @NamedQuery(name = BuchungsDaten.GET_BD_WITH_FLUGG, query = "SELECT bd FROM BuchungsDaten bd " +
                 "JOIN bd.flugById f  " +
                 "JOIN f.linie l " +
@@ -21,7 +20,6 @@ public class BuchungsDaten {
     private Passagier passagier;
     private Flug flug;
 
-    public static final String GET_ALL = "BuchungsDaten.getAll";
     public static final String GET_BD_WITH_FLUGG = "BuchungsDaten.getBdWithFlugg";
 
     public BuchungsDaten() {
