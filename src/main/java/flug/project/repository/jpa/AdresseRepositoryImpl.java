@@ -33,5 +33,10 @@ public class AdresseRepositoryImpl implements AdresseRepository {
                 .getResultList();
     }
 
+    @Override
+    public Adresse getById(String... arr) {
+        return null;
+    }
+
 
 }

@@ -33,6 +33,11 @@ public class BuchungsDatenRepositoryImpl implements BuchungsDatenRepository {
     }
 
     @Override
+    public BuchungsDaten getById(Integer... arr) {
+        return null;
+    }
+
+    @Override
     public List<BuchungsDaten> getBuchungsDaten(Integer nummer, String flugId) {
         return em.createNamedQuery(BuchungsDaten.GET_BD_WITH_FLUGG, BuchungsDaten.class)
                 .setParameter(1, nummer)

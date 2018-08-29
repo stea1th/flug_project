@@ -4,6 +4,6 @@ import flug.project.entity.Ort;
 import flug.project.repository.MainRepositoryInterface;
 
 
-public interface OrtRepository extends MainRepositoryInterface<Ort, Integer, String> {
+public interface OrtRepository extends MainRepositoryInterface<Ort, String, String> {
 
 }

@@ -50,7 +50,7 @@ public abstract class AbstractMainController {
     public void saveAll(String url) throws IOException {
 
         for(String[] arr : XLSReader.readXLS(ConverterUtil.convertToUrl(url))){
-            int landId = saveLand(arr[24]);
+            String landId = saveLand(arr[24]);
             int ortId = saveOrt(arr[22], landId);
             int adrId = saveAdresse(ortId, arr[21], arr[23]);
             int anrId = saveAnrede(arr[19]);
@@ -68,16 +68,14 @@ public abstract class AbstractMainController {
         }
     }
 
-    private int saveLand(String land){
-        Land l = landService.get(land);
-        if(l == null){
-            l = new Land(CountUtil.getNewId(), land);
-            landService.create(l);
+    private String saveLand(String land){
+        if(landService.get(land) == null){
+            landService.create(new Land(land));
         }
-        return l.getlId();
+        return land;
     }
 
-    private int saveOrt(String ort, int landId){
+    private int saveOrt(String ort, String landId){
         Ort o = ortService.get(ort);
         if(o == null){
             o = new Ort(CountUtil.getNewId(), ort);

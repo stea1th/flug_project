@@ -30,9 +30,12 @@ public class LandRepositoryImpl implements LandRepository {
 
     @Override
     public List<Land> get(String... arr) {
-        return em.createNamedQuery(Land.GET, Land.class)
-                .setParameter(1, arr[0])
-                .getResultList();
+        return null;
+    }
+
+    @Override
+    public Land getById(String... arr) {
+        return em.find(Land.class, arr[0]);
     }
 
 

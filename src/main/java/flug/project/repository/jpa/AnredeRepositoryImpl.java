@@ -34,4 +34,9 @@ public class AnredeRepositoryImpl implements AnredeRepository {
                 .setParameter(1, arr[0])
                 .getResultList();
     }
+
+    @Override
+    public Anrede getById(String... arr) {
+        return null;
+    }
 }

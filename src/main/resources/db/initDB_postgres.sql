@@ -38,10 +38,9 @@ create table Anrede
 
 create table Land
 (
-  L_ID     int  not null
+  L_ID     varchar(40)  not null
     constraint L_ID_PK
-    primary key,
-  Bezeichnung varchar(40) not null
+    primary key
 );
 
 create table Ort
@@ -50,7 +49,7 @@ create table Ort
     constraint O_ID_PK
     primary key,
   Bezeichnung varchar(100) not null,
-  L_ID        int   not null
+  L_ID        varchar(40)   not null
     constraint L_ID_FK
     references Land
 );

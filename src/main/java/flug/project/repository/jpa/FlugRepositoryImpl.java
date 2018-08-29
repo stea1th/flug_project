@@ -40,5 +40,10 @@ public class FlugRepositoryImpl implements FlugRepository {
 
     }
 
+    @Override
+    public Flug getById(String... arr) {
+        return null;
+    }
+
 
 }

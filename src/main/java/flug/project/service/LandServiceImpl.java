@@ -24,10 +24,7 @@ public class LandServiceImpl implements LandService {
 
     @Override
     public Land get(String... arr) {
-        List<Land> lands = repository.get(arr[0]);
-        if(lands.isEmpty())
-            return null;
-        return lands.get(0);
+        return repository.getById(arr);
     }
 
     @Override

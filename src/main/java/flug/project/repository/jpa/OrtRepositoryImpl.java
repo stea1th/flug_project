@@ -19,7 +19,7 @@ public class OrtRepositoryImpl implements OrtRepository {
 
     @Override
     @Transactional
-    public Ort save(Ort ort, Integer... landId) {
+    public Ort save(Ort ort, String... landId) {
         ort.setLandByLId(em.getReference(Land.class, landId[0]));
         em.persist(ort);
         return ort;
@@ -30,6 +30,11 @@ public class OrtRepositoryImpl implements OrtRepository {
         return em.createNamedQuery(Ort.GET, Ort.class)
                 .setParameter(1, arr[0])
                 .getResultList();
+    }
+
+    @Override
+    public Ort getById(String... arr) {
+        return null;
     }
 
 

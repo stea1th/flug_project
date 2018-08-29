@@ -38,5 +38,10 @@ public class FlugzeugTypRepositoryImpl implements FlugzeugTypRepository {
                 .getResultList();
     }
 
+    @Override
+    public FlugzeugTyp getById(String... arr) {
+        return null;
+    }
+
 
 }
