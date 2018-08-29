@@ -32,27 +32,24 @@ create table Fluggesellschaft
 
 create table Anrede
 (
-  A_ID        int
+  A_ID        varchar(40)
     constraint A_ID_PK
-    primary key,
-  Bezeichnung varchar(40) not null
+    primary key
 );
 
 create table Land
 (
-  L_ID     int  not null
+  L_ID     varchar(40)  not null
     constraint L_ID_PK
-    primary key,
-  Bezeichnung varchar(40) not null
+    primary key
 );
 
 create table Ort
 (
-  O_ID        int
+  O_ID        varchar(40)
     constraint O_ID_PK
     primary key,
-  Bezeichnung varchar(100) not null,
-  L_ID        int   not null
+  L_ID        varchar(40)   not null
     constraint L_ID_FK
     references Land
 );
@@ -64,7 +61,7 @@ create table Adresse
     primary key,
   PLZ     varchar(10),
   Strasse varchar(100),
-  O_ID    int not null
+  O_ID    varchar(40) not null
     constraint O_ID_Adr_FK
     references Ort
 );
@@ -75,7 +72,7 @@ create table Passagier
     constraint P_ID_PK
     primary key,
   Name   varchar(100) not null,
-  A_ID   int
+  A_ID   varchar(40)
     constraint A_ID_Pass_FK
     references Anrede,
   Adr_ID int          not null
@@ -90,7 +87,7 @@ create table Flughafen
     primary key
     constraint FH_ID_check
     check ([FH_ID] like '[A-Z][A-Z][A-Z]'),
-  O_ID  int     not null
+  O_ID  varchar(40)     not null
     constraint O_ID_Flugha_FK
     references Ort
 );
