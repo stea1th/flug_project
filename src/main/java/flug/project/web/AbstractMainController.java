@@ -49,6 +49,7 @@ public abstract class AbstractMainController {
 
     public void saveAll(String url) throws IOException {
 
+        int count = 0;
         for(String[] arr : XLSReader.readXLS(ConverterUtil.convertToUrl(url))){
             String landId = saveLand(arr[24]);
             String ortId = saveOrt(arr[22], landId);
@@ -65,7 +66,9 @@ public abstract class AbstractMainController {
             int ftId = saveFlugzeugTyp(new String[]{arr[12], arr[15], arr[13]});
             int flId = saveFlug(ftId, linId, arr[10], arr[11], arr[14]);
             saveBuchungsDaten(arr[0], arr[16], arr[17], passId, flId);
+            count++;
         }
+        System.out.println("Line saved: "+count);
     }
 
     private String saveLand(String land){
