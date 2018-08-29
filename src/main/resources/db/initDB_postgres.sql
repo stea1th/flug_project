@@ -45,10 +45,9 @@ create table Land
 
 create table Ort
 (
-  O_ID        int
+  O_ID        varchar(40)
     constraint O_ID_PK
     primary key,
-  Bezeichnung varchar(100) not null,
   L_ID        varchar(40)   not null
     constraint L_ID_FK
     references Land
@@ -61,7 +60,7 @@ create table Adresse
     primary key,
   PLZ     varchar(10),
   Strasse varchar(100),
-  O_ID    int not null
+  O_ID    varchar(40) not null
     constraint O_ID_Adr_FK
     references Ort
 );
@@ -85,7 +84,7 @@ create table Flughafen
   FH_ID char(3) not null
     constraint FH_ID_PK
     primary key,
-  O_ID  int     not null
+  O_ID  varchar(40)     not null
     constraint O_ID_Flugha_FK
     references Ort
 );

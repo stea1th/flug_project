@@ -19,7 +19,7 @@ public class AdresseRepositoryImpl implements AdresseRepository {
 
     @Override
     @Transactional
-    public Adresse save(Adresse adresse, Integer... ortId) {
+    public Adresse save(Adresse adresse, String... ortId) {
         adresse.setOrtById(em.getReference(Ort.class, ortId[0]));
         em.persist(adresse);
         return adresse;

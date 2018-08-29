@@ -26,10 +26,7 @@ public class OrtServiceImpl implements OrtService {
 
     @Override
     public Ort get(String... arr) {
-        List<Ort> orts = repository.get(arr[0]);
-        if(orts.isEmpty())
-            return null;
-        return orts.get(0);
+        return repository.getById(arr);
     }
 
 

@@ -19,7 +19,7 @@ public class FlughafenServiceImpl implements FlughafenService {
     }
 
     @Override
-    public Flughafen create(Flughafen flughafen, Integer id) {
+    public Flughafen create(Flughafen flughafen, String id) {
         return repository.save(flughafen, id);
     }
 

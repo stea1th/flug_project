@@ -15,9 +15,8 @@ public class AdresseServiceImpl implements AdresseService {
     @Autowired
     private AdresseRepository repository;
 
-
     @Override
-    public Adresse create(Adresse adresse, Integer id) {
+    public Adresse create(Adresse adresse, String id) {
         return repository.save(adresse, id);
     }
 

@@ -19,7 +19,7 @@ public class FlughafenRepositoryImpl implements FlughafenRepository {
 
     @Override
     @Transactional
-    public Flughafen save(Flughafen flughafen, Integer... arr) {
+    public Flughafen save(Flughafen flughafen, String... arr) {
         flughafen.setOrtById(em.getReference(Ort.class, arr[0]));
         em.persist(flughafen);
         return flughafen;

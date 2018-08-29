@@ -51,7 +51,7 @@ public abstract class AbstractMainController {
 
         for(String[] arr : XLSReader.readXLS(ConverterUtil.convertToUrl(url))){
             String landId = saveLand(arr[24]);
-            int ortId = saveOrt(arr[22], landId);
+            String ortId = saveOrt(arr[22], landId);
             int adrId = saveAdresse(ortId, arr[21], arr[23]);
             int anrId = saveAnrede(arr[19]);
             int passId = savePassagier(anrId, adrId, arr[18], arr[20]);
@@ -75,16 +75,14 @@ public abstract class AbstractMainController {
         return land;
     }
 
-    private int saveOrt(String ort, String landId){
-        Ort o = ortService.get(ort);
-        if(o == null){
-            o = new Ort(CountUtil.getNewId(), ort);
-            ortService.create(o, landId);
+    private String saveOrt(String ort, String landId){
+        if(ortService.get(ort) == null){
+            ortService.create(new Ort(ort), landId);
         }
-        return o.getoId();
+        return ort;
     }
 
-    private int saveAdresse(int ortId, String... arr){
+    private int saveAdresse(String ortId, String... arr){
         Adresse a = adresseService.get(arr[1], ConverterUtil.splitNull(arr[0]));
         if(a == null){
             a = new Adresse(CountUtil.getNewId(), ConverterUtil.splitNull(arr[0]), arr[1]);

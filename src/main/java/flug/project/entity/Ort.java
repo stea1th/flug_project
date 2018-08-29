@@ -3,58 +3,41 @@ package flug.project.entity;
 import javax.persistence.*;
 import java.util.Objects;
 
-@NamedQueries({
-        @NamedQuery(name= Ort.GET, query = "SELECT o FROM Ort o WHERE o.bezeichnung = ?1 ")
-})
-
 @Entity
 public class Ort {
-    private int oId;
-    private String bezeichnung;
+    private String oId;
     private Land landByLId;
-
-    public static final String GET = "Ort.get";
 
     public Ort() {
     }
 
-    public Ort(int oId, String bezeichnung) {
+    public Ort(String oId) {
         this.oId = oId;
-        this.bezeichnung = bezeichnung;
     }
 
     @Id
     @Column(name = "O_ID", nullable = false)
-    public int getoId() {
+    public String getoId() {
         return oId;
     }
 
-    public void setoId(int oId) {
+    public void setoId(String oId) {
         this.oId = oId;
-    }
-
-    @Basic
-    @Column(name = "Bezeichnung", nullable = false, length = 100)
-    public String getBezeichnung() {
-        return bezeichnung;
-    }
-
-    public void setBezeichnung(String bezeichnung) {
-        this.bezeichnung = bezeichnung;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Ort)) return false;
         Ort ort = (Ort) o;
-        return oId == ort.oId &&
-                Objects.equals(bezeichnung, ort.bezeichnung);
+        return Objects.equals(oId, ort.oId) &&
+                Objects.equals(landByLId, ort.landByLId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(oId, bezeichnung);
+
+        return Objects.hash(oId, landByLId);
     }
 
     @ManyToOne

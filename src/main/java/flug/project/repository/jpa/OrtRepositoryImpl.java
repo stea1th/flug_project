@@ -27,14 +27,12 @@ public class OrtRepositoryImpl implements OrtRepository {
 
     @Override
     public List<Ort> get(String... arr) {
-        return em.createNamedQuery(Ort.GET, Ort.class)
-                .setParameter(1, arr[0])
-                .getResultList();
+        return null;
     }
 
     @Override
     public Ort getById(String... arr) {
-        return null;
+        return em.find(Ort.class, arr[0]);
     }
 
 
