@@ -1,7 +1,7 @@
 package flug.project.service;
 
 import flug.project.entity.Fluggesellschaft;
-import flug.project.repository.jpa.FluggeselschaftRepository;
+import flug.project.repository.FluggeselschaftRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,18 +19,13 @@ public class FluggeselschaftServiceImpl implements FluggeselschaftService {
     }
 
     @Override
-    public List<String> getAllIds() {
-        return repository.getAll();
-    }
-
-    @Override
-    public Map<String, String> getAll() {
-        return null;
-    }
-
-    @Override
     public Fluggesellschaft create(Fluggesellschaft fluggesellschaft, String id) {
         return null;
+    }
+
+    @Override
+    public Fluggesellschaft get(String... arr) {
+        return repository.getById(arr);
     }
 
     @Override

@@ -2,6 +2,7 @@ package flug.project.repository.jpa;
 
 import flug.project.entity.Land;
 import flug.project.entity.Ort;
+import flug.project.repository.OrtRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,8 +26,11 @@ public class OrtRepositoryImpl implements OrtRepository {
     }
 
     @Override
-    public List<Ort> getAll() {
-        return em.createNamedQuery(Ort.GET_ALL, Ort.class)
+    public List<Ort> get(String... arr) {
+        return em.createNamedQuery(Ort.GET, Ort.class)
+                .setParameter(1, arr[0])
                 .getResultList();
     }
+
+
 }

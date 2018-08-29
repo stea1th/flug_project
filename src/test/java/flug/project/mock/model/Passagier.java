@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "Passagier")
 public class Passagier {
 
-    public static final String ALL_IDS = "Passagier.getAllIds";
+    public static final String ALL_IDS = "Passagier.get";
 
     @Id
     @NotNull

@@ -3,13 +3,11 @@ package flug.project.entity;
 import javax.persistence.*;
 import java.util.Objects;
 
-@NamedQuery(name = Flughafen.GET_ALL_IDS, query = "SELECT f.fhId FROM Flughafen f ")
+
 @Entity
 public class Flughafen {
     private String fhId;
     private Ort ortById;
-
-    public static final String GET_ALL_IDS = "Flughafen.getAll";
 
     public Flughafen() {
     }

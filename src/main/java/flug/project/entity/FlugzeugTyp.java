@@ -3,7 +3,8 @@ package flug.project.entity;
 import javax.persistence.*;
 import java.util.Objects;
 
-@NamedQuery(name =FlugzeugTyp.GET_ALL, query="SELECT ft FROM FlugzeugTyp ft ")
+@NamedQuery(name =FlugzeugTyp.GET, query="SELECT ft FROM FlugzeugTyp ft " +
+        "WHERE ft.typ = ?1 AND ft.kapaz =?2 AND ft.hersteller=?3 ")
 @Entity
 public class FlugzeugTyp {
     private int ftId;
@@ -11,7 +12,7 @@ public class FlugzeugTyp {
     private int kapaz;
     private String hersteller;
 
-    public static final String GET_ALL = "FlugzeugTyp.getAll";
+    public static final String GET = "FlugzeugTyp.get";
 
     public FlugzeugTyp() {
     }

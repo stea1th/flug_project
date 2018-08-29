@@ -1,7 +1,7 @@
 package flug.project.service;
 
 import flug.project.entity.Land;
-import flug.project.repository.jpa.LandRepository;
+import flug.project.repository.LandRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,20 +18,16 @@ public class LandServiceImpl implements LandService {
     }
 
     @Override
-    public Map<String, Integer> getAll() {
-        return repository.getAll()
-                .stream()
-                .collect(Collectors.toMap(Land::getBezeichnung, Land::getlId));
-    }
-
-    @Override
     public Land create(Land land, Integer id) {
         return null;
     }
 
     @Override
-    public List<String> getAllIds() {
-        return null;
+    public Land get(String... arr) {
+        List<Land> lands = repository.get(arr[0]);
+        if(lands.isEmpty())
+            return null;
+        return lands.get(0);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package flug.project.repository.jpa;
 
 import flug.project.entity.Land;
+import flug.project.repository.LandRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,8 +29,11 @@ public class LandRepositoryImpl implements LandRepository {
     }
 
     @Override
-    public List<Land> getAll() {
-        return em.createNamedQuery(Land.GET_ALL, Land.class)
+    public List<Land> get(String... arr) {
+        return em.createNamedQuery(Land.GET, Land.class)
+                .setParameter(1, arr[0])
                 .getResultList();
     }
+
+
 }

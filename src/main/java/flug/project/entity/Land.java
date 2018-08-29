@@ -3,14 +3,14 @@ package flug.project.entity;
 import javax.persistence.*;
 import java.util.Objects;
 @NamedQueries({
-        @NamedQuery(name= Land.GET_ALL, query = "SELECT l FROM Land l ")
+        @NamedQuery(name= Land.GET, query = "SELECT l FROM Land l WHERE l.bezeichnung = ?1 ")
 })
 @Entity
 public class Land {
     private int lId;
     private String bezeichnung;
 
-    public static final String GET_ALL = "Land.getAll";
+    public static final String GET = "Land.get";
 
     public Land() {
     }
@@ -45,8 +45,7 @@ public class Land {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Land land = (Land) o;
-        return lId == land.lId &&
-                Objects.equals(bezeichnung, land.bezeichnung);
+        return Objects.equals(bezeichnung, land.bezeichnung);
     }
 
     @Override

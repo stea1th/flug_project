@@ -1,6 +1,7 @@
 package flug.project.repository.jpa;
 
 import flug.project.entity.Anrede;
+import flug.project.repository.AnredeRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,8 +29,9 @@ public class AnredeRepositoryImpl implements AnredeRepository {
     }
 
     @Override
-    public List<Anrede> getAll() {
-        return em.createNamedQuery(Anrede.GET_ALL, Anrede.class)
+    public List<Anrede> get(String... arr) {
+        return em.createNamedQuery(Anrede.GET, Anrede.class)
+                .setParameter(1, arr[0])
                 .getResultList();
     }
 }

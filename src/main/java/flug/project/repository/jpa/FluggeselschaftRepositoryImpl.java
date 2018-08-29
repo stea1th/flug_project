@@ -1,6 +1,7 @@
 package flug.project.repository.jpa;
 
 import flug.project.entity.Fluggesellschaft;
+import flug.project.repository.FluggeselschaftRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,13 +24,19 @@ public class FluggeselschaftRepositoryImpl implements FluggeselschaftRepository 
     }
 
     @Override
+    public Fluggesellschaft getById(String... arr) {
+        return em.find(Fluggesellschaft.class, arr[0]);
+    }
+
+    @Override
     public Fluggesellschaft save(Fluggesellschaft fluggesellschaft, Integer... arr) {
         return null;
     }
 
     @Override
-    public List<String> getAll() {
-        return em.createNamedQuery(Fluggesellschaft.GET_ALL, String.class)
-                .getResultList();
+    public List<Fluggesellschaft> get(String... arr) {
+        return null;
     }
+
+
 }

@@ -2,6 +2,7 @@ package flug.project.repository.jpa;
 
 import flug.project.entity.Flughafen;
 import flug.project.entity.Ort;
+import flug.project.repository.FlughafenRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,9 +26,12 @@ public class FlughafenRepositoryImpl implements FlughafenRepository {
     }
 
     @Override
-    public List<String> getAll() {
-        return em.createNamedQuery(Flughafen.GET_ALL_IDS, String.class)
-                .getResultList();
+    public List<Flughafen> get(String... arr) {
+        return null;
     }
 
+    @Override
+    public Flughafen getById(String... arr) {
+        return em.find(Flughafen.class, arr[0]);
+    }
 }

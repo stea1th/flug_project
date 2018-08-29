@@ -3,7 +3,7 @@ package flug.project.entity;
 import javax.persistence.*;
 import java.util.Objects;
 
-@NamedQuery(name=Anrede.GET_ALL, query = "SELECT an FROM Anrede an ")
+@NamedQuery(name=Anrede.GET, query = "SELECT an FROM Anrede an WHERE an.bezeichnung = ?1 ")
 @Entity
 public class Anrede {
     private int aId;
@@ -17,7 +17,7 @@ public class Anrede {
         this.bezeichnung = bezeichnung;
     }
 
-    public static final String GET_ALL = "Anrede.getAll";
+    public static final String GET = "Anrede.get";
 
     @Id
     @Column(name = "A_ID", nullable = false)

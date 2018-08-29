@@ -1,7 +1,7 @@
 package flug.project.service;
 
 import flug.project.entity.Anrede;
-import flug.project.repository.jpa.AnredeRepository;
+import flug.project.repository.AnredeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,23 +20,21 @@ public class AnredeServiceImpl implements AnredeService {
     }
 
     @Override
-    public Map<String, Integer> getAll() {
-        return repository.getAll()
-                .stream()
-                .collect(Collectors.toMap(Anrede::getBezeichnung, Anrede::getaId));
-    }
-
-    @Override
     public Anrede create(Anrede anrede, Integer id) {
         return null;
     }
 
     @Override
-    public List<String> getAllIds() {
-        return null;
+    public Anrede get(String... arr) {
+        List<Anrede> anredes = repository.get(arr);
+        if(anredes.isEmpty())
+            return null;
+        return anredes.get(0);
     }
 
     public Anrede create(Anrede anrede) {
         return repository.save(anrede);
     }
+
+
 }

@@ -7,7 +7,8 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@NamedQuery(name = Flug.GET_ALL, query="SELECT fl FROM Flug fl ")
+@NamedQuery(name = Flug.GET, query="SELECT fl FROM Flug fl " +
+        "WHERE fl.datum = ?1 AND fl.preis = ?2 AND fl.belPlatz = ?3 ")
 public class Flug {
     private int flId;
     private LocalDate datum;
@@ -19,7 +20,7 @@ public class Flug {
     private Linie linie;
     private FlugzeugTyp flugzeugTyp;
 
-    public static final String GET_ALL = "Flug.getAll";
+    public static final String GET = "Flug.get";
 
     public Flug() {
     }

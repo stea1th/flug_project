@@ -3,6 +3,7 @@ package flug.project.repository.jpa;
 import flug.project.entity.Fluggesellschaft;
 import flug.project.entity.Flughafen;
 import flug.project.entity.Linie;
+import flug.project.repository.LinieRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,8 +29,12 @@ public class LinieRepositoryImpl implements LinieRepository {
     }
 
     @Override
-    public List<Integer> getAll() {
-        return em.createNamedQuery(Linie.GET_ALL, Integer.class)
-                .getResultList();
+    public List<Linie> get(Integer... arr) {
+        return null;
+    }
+
+    @Override
+    public Linie getById(Integer... arr) {
+        return em.find(Linie.class, arr[0]);
     }
 }

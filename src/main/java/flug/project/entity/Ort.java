@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @NamedQueries({
-        @NamedQuery(name= Ort.GET_ALL, query = "SELECT o FROM Ort o ")
+        @NamedQuery(name= Ort.GET, query = "SELECT o FROM Ort o WHERE o.bezeichnung = ?1 ")
 })
 
 @Entity
@@ -13,7 +13,7 @@ public class Ort {
     private String bezeichnung;
     private Land landByLId;
 
-    public static final String GET_ALL = "Ort.getAll";
+    public static final String GET = "Ort.get";
 
     public Ort() {
     }

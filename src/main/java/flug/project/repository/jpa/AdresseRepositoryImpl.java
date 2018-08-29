@@ -2,6 +2,7 @@ package flug.project.repository.jpa;
 
 import flug.project.entity.Adresse;
 import flug.project.entity.Ort;
+import flug.project.repository.AdresseRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,8 +26,12 @@ public class AdresseRepositoryImpl implements AdresseRepository {
     }
 
     @Override
-    public List<Adresse> getAll() {
-        return em.createNamedQuery(Adresse.GET_ALL, Adresse.class)
+    public List<Adresse> get(String... arr) {
+        return em.createNamedQuery(Adresse.GET, Adresse.class)
+                .setParameter(1, arr[0])
+                .setParameter(2, arr[1])
                 .getResultList();
     }
+
+
 }

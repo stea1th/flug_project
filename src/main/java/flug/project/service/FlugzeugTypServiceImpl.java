@@ -1,7 +1,7 @@
 package flug.project.service;
 
 import flug.project.entity.FlugzeugTyp;
-import flug.project.repository.jpa.FlugzeugTypRepository;
+import flug.project.repository.FlugzeugTypRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,16 +25,7 @@ public class FlugzeugTypServiceImpl implements FlugzeugTypService {
         return repository.save(flugzeugTyp);
     }
 
-    @Override
-    public Map<String, Integer> getAll() {
-        StringBuilder builder = new StringBuilder();
-        Map<String, Integer> map = new HashMap<>();
-        repository.getAll().forEach(flugzeugTyp -> {
-            builder.append(flugzeugTyp.getTyp()).append(" ").append(flugzeugTyp.getKapaz());
-            map.put(builder.toString(), flugzeugTyp.getFtId());
-        });
-        return map;
-    }
+
 
     @Override
     public FlugzeugTyp create(FlugzeugTyp flugzeugTyp, Integer id) {
@@ -42,7 +33,10 @@ public class FlugzeugTypServiceImpl implements FlugzeugTypService {
     }
 
     @Override
-    public List<String> getAllIds() {
-        return null;
+    public FlugzeugTyp get(String... arr) {
+        List<FlugzeugTyp> flugzeugTyps = repository.get(arr);
+        return flugzeugTyps.isEmpty()? null : flugzeugTyps.get(0);
     }
+
+
 }

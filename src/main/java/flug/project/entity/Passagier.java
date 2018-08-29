@@ -2,7 +2,6 @@ package flug.project.entity;
 
 import javax.persistence.*;
 import java.util.Objects;
-@NamedQuery(name = Passagier.GET_ALL_IDS, query = "SELECT p.id FROM Passagier p ")
 @Entity
 public class Passagier {
     private int pId;
@@ -10,7 +9,6 @@ public class Passagier {
     private Anrede anredeByAId;
     private Adresse adresseByAdrId;
 
-    public static final String GET_ALL_IDS = "Passagier.getAllIds";
 
     public Passagier() {
     }

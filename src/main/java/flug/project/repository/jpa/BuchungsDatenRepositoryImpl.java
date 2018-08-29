@@ -3,6 +3,7 @@ package flug.project.repository.jpa;
 import flug.project.entity.BuchungsDaten;
 import flug.project.entity.Flug;
 import flug.project.entity.Passagier;
+import flug.project.repository.BuchungsDatenRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,14 +27,9 @@ public class BuchungsDatenRepositoryImpl implements BuchungsDatenRepository {
         return buchungsDaten;
     }
 
-
-
-
-
     @Override
-    public List<Integer> getAll() {
-        return em.createNamedQuery(BuchungsDaten.GET_ALL, Integer.class)
-                .getResultList();
+    public List<BuchungsDaten> get(Integer... arr) {
+        return null;
     }
 
     @Override

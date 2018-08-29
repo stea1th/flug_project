@@ -1,7 +1,7 @@
 package flug.project.service;
 
 import flug.project.entity.Flughafen;
-import flug.project.repository.jpa.FlughafenRepository;
+import flug.project.repository.FlughafenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,17 +19,12 @@ public class FlughafenServiceImpl implements FlughafenService {
     }
 
     @Override
-    public List<String> getAllIds() {
-        return repository.getAll();
-    }
-
-    @Override
-    public Map<String, Integer> getAll() {
-        return null;
-    }
-
-    @Override
     public Flughafen create(Flughafen flughafen, Integer id) {
         return repository.save(flughafen, id);
+    }
+
+    @Override
+    public Flughafen get(String... arr) {
+        return repository.getById(arr);
     }
 }

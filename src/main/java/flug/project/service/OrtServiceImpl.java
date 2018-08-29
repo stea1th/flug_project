@@ -1,7 +1,7 @@
 package flug.project.service;
 
 import flug.project.entity.Ort;
-import flug.project.repository.jpa.OrtRepository;
+import flug.project.repository.OrtRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +19,6 @@ public class OrtServiceImpl implements OrtService {
         this.repository = repository;
     }
 
-    @Override
-    public Map<String, Integer> getAll() {
-        return repository.getAll()
-                .stream()
-                .collect(Collectors.toMap(Ort::getBezeichnung, Ort::getoId));
-    }
 
     @Override
     public Ort create(Ort ort, Integer landId) {
@@ -32,7 +26,12 @@ public class OrtServiceImpl implements OrtService {
     }
 
     @Override
-    public List<String> getAllIds() {
-        return null;
+    public Ort get(String... arr) {
+        List<Ort> orts = repository.get(arr[0]);
+        if(orts.isEmpty())
+            return null;
+        return orts.get(0);
     }
+
+
 }

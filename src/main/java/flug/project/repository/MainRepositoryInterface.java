@@ -6,5 +6,5 @@ public interface MainRepositoryInterface<T, S, I> {
 
     T save(T t, S... arr);
 
-    List<I> getAll();
+    List<T> get(I... arr);
 }

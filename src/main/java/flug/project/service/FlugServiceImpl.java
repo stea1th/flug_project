@@ -1,7 +1,7 @@
 package flug.project.service;
 
 import flug.project.entity.Flug;
-import flug.project.repository.jpa.FlugRepository;
+import flug.project.repository.FlugRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,23 +20,15 @@ public class FlugServiceImpl implements FlugService {
         this.repository = repository;
     }
 
-
-
-    @Override
-    public Map<LocalDate, Integer> getAll() {
-        return repository.getAll()
-                .stream()
-                .collect(Collectors.toMap(Flug::getDatum, Flug::getFlId));
-    }
-
     @Override
     public Flug create(Flug flug, Integer id) {
         return null;
     }
 
     @Override
-    public List<LocalDate> getAllIds() {
-        return null;
+    public Flug get(String... arr) {
+        List<Flug> flugs = repository.get(arr);
+        return flugs.isEmpty()? null : flugs.get(0);
     }
 
 

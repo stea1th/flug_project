@@ -4,7 +4,9 @@ import javax.persistence.*;
 import java.util.Objects;
 
 
-@NamedQuery(name=Adresse.GET_ALL , query = "SELECT a FROM Adresse a ")
+@NamedQuery(name=Adresse.GET , query = "SELECT a " +
+                    "FROM Adresse a WHERE a.strasse = ?1 AND " +
+                    "a.plz = ?2 ")
 @Entity
 public class Adresse {
     private int adrId;
@@ -12,7 +14,7 @@ public class Adresse {
     private String strasse;
     private Ort ortById;
 
-    public static final  String GET_ALL = "Adresse.getAll";
+    public static final  String GET = "Adresse.get";
 
     public Adresse() {
     }

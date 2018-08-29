@@ -1,7 +1,7 @@
 package flug.project.service;
 
 import flug.project.entity.Linie;
-import flug.project.repository.jpa.LinieRepository;
+import flug.project.repository.LinieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,17 +24,14 @@ public class LinieServiceImpl implements LinieService {
     }
 
     @Override
-    public Map<Integer, String> getAll() {
-        return null;
-    }
-
-    @Override
     public Linie create(Linie linie, String id) {
         return null;
     }
 
     @Override
-    public List<Integer> getAllIds() {
-        return repository.getAll();
+    public Linie get(Integer... arr) {
+        return repository.getById(arr);
     }
+
+
 }

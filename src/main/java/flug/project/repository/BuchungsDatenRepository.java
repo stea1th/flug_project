@@ -1,4 +1,4 @@
-package flug.project.repository.jpa;
+package flug.project.repository;
 
 import flug.project.entity.BuchungsDaten;
 import flug.project.repository.MainRepositoryInterface;

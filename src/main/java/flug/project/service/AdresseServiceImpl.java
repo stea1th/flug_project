@@ -1,7 +1,7 @@
 package flug.project.service;
 
 import flug.project.entity.Adresse;
-import flug.project.repository.jpa.AdresseRepository;
+import flug.project.repository.AdresseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,21 +15,6 @@ public class AdresseServiceImpl implements AdresseService {
     @Autowired
     private AdresseRepository repository;
 
-//    @Autowired
-//    public AdresseServiceImpl(AdresseRepository repository) {
-//        this.repository = repository;
-//    }
-
-    @Override
-    public Map<String, Integer> getAll() {
-        StringBuilder builder = new StringBuilder();
-        Map<String, Integer> map = new HashMap<>();
-        repository.getAll().forEach(adresse -> {
-            builder.append(adresse.getStrasse()).append(" ").append(adresse.getPlz());
-            map.put(builder.toString(), adresse.getAdrId());
-        });
-        return map;
-    }
 
     @Override
     public Adresse create(Adresse adresse, Integer id) {
@@ -37,7 +22,12 @@ public class AdresseServiceImpl implements AdresseService {
     }
 
     @Override
-    public List<String> getAllIds() {
-        return null;
+    public Adresse get(String... arr) {
+        List<Adresse>adresses = repository.get(arr);
+        if(adresses.isEmpty())
+            return null;
+        return adresses.get(0);
     }
+
+
 }

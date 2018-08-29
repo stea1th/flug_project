@@ -1,7 +1,7 @@
 package flug.project.service;
 
 import flug.project.entity.BuchungsDaten;
-import flug.project.repository.jpa.BuchungsDatenRepository;
+import flug.project.repository.BuchungsDatenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,17 +29,12 @@ public class BuchungsDatenServiceImpl implements BuchungsDatenService {
     }
 
     @Override
-    public Map<Integer, Integer> getAll() {
-        return null;
-    }
-
-    @Override
     public BuchungsDaten create(BuchungsDaten buchungsDaten, Integer id) {
         return null;
     }
 
     @Override
-    public List<Integer> getAllIds() {
-        return repository.getAll();
+    public BuchungsDaten get(Integer... arr) {
+        return null;
     }
 }
