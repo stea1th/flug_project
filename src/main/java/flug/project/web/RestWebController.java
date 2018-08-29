@@ -29,7 +29,7 @@ public class RestWebController extends AbstractMainController {
         } catch (Exception e){
             e.printStackTrace();
         }
-        System.out.println(LocalTime.now().toSecondOfDay()-start);
+        System.out.println("File was saved in: "+ (LocalTime.now().toSecondOfDay()-start)+" seconds");
         return "Done";
     }
 }
