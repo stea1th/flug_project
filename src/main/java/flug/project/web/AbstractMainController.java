@@ -86,9 +86,10 @@ public abstract class AbstractMainController {
     }
 
     private int saveAdresse(String ortId, String... arr){
-        Adresse a = adresseService.get(arr[1], ConverterUtil.splitNull(arr[0]));
+        String plz = ConverterUtil.splitNull(arr[0]);
+        Adresse a = adresseService.get(arr[1], plz);
         if(a == null){
-            a = new Adresse(CountUtil.getNewId(), ConverterUtil.splitNull(arr[0]), arr[1]);
+            a = new Adresse(CountUtil.getNewId(), plz, arr[1]);
             adresseService.create(a, ortId);
         }
         return a.getAdrId();

@@ -22,7 +22,8 @@ public class AdresseServiceImpl implements AdresseService {
 
     @Override
     public Adresse get(String... arr) {
-        return repository.getById(arr);
+        List<Adresse> adresses = repository.get(arr);
+        return adresses.isEmpty()? null : adresses.get(0);
     }
 
 
