@@ -1,10 +1,5 @@
 package flug.project.service;
 
-import flug.project.entity.Flug;
+public interface FlugService extends MainServiceInterface<Integer, String>  {
 
-import java.time.LocalDate;
-
-public interface FlugService extends MainServiceInterface<Flug, String, Integer>  {
-
-    Flug create(Flug flug, Integer s, Integer id);
 }

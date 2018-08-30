@@ -19,15 +19,27 @@ public class OrtServiceImpl implements OrtService {
         this.repository = repository;
     }
 
-    @Override
+
     public Ort create(Ort ort, String id) {
         return repository.save(ort, id);
     }
 
-    @Override
+
     public Ort get(String... arr) {
         return repository.getById(arr);
     }
 
 
+    @Override
+    public String saveIt(String... arr) {
+        if(get(arr[0]) == null){
+            create(new Ort(arr[0]), arr[1]);
+        }
+        return arr[0];
+    }
+
+    @Override
+    public String saveIt(String[] t, String... arr) {
+        return null;
+    }
 }

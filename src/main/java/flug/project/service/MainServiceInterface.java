@@ -1,8 +1,8 @@
 package flug.project.service;
 
-public interface MainServiceInterface<T, S, I> {
+public interface MainServiceInterface<T, S> {
 
-    T create(T t, I id);
+    T saveIt(S... arr);
 
-    T get(S... arr);
+    T saveIt(T[] t, S...arr);
 }

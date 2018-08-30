@@ -18,13 +18,26 @@ public class FlughafenServiceImpl implements FlughafenService {
         this.repository = repository;
     }
 
-    @Override
+
     public Flughafen create(Flughafen flughafen, String id) {
         return repository.save(flughafen, id);
     }
 
-    @Override
+
     public Flughafen get(String... arr) {
         return repository.getById(arr);
+    }
+
+    @Override
+    public String saveIt(String... arr) {
+        if(get(arr[0])==null){
+            create(new Flughafen(arr[0]), arr[1]);
+        }
+        return arr[0];
+    }
+
+    @Override
+    public String saveIt(String[] t, String... arr) {
+        return null;
     }
 }

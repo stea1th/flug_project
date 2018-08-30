@@ -18,18 +18,26 @@ public class FluggeselschaftServiceImpl implements FluggeselschaftService {
         this.repository = repository;
     }
 
-    @Override
-    public Fluggesellschaft create(Fluggesellschaft fluggesellschaft, String id) {
-        return null;
-    }
 
-    @Override
     public Fluggesellschaft get(String... arr) {
         return repository.getById(arr);
     }
 
-    @Override
+
     public Fluggesellschaft create(Fluggesellschaft fluggesellschaft) {
         return repository.save(fluggesellschaft);
+    }
+
+    @Override
+    public String saveIt(String... arr) {
+        if(get(arr[0])==null){
+            create(new Fluggesellschaft(arr[0], arr[1]));
+        }
+        return arr[0];
+    }
+
+    @Override
+    public String saveIt(String[] t, String... arr) {
+        return null;
     }
 }

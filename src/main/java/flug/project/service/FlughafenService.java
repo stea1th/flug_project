@@ -1,7 +1,5 @@
 package flug.project.service;
 
-import flug.project.entity.Flughafen;
-
-public interface FlughafenService extends MainServiceInterface<Flughafen, String, String> {
+public interface FlughafenService extends MainServiceInterface<String, String> {
 
 }

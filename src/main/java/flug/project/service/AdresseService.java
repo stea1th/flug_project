@@ -1,7 +1,5 @@
 package flug.project.service;
 
-import flug.project.entity.Adresse;
-
-public interface AdresseService extends MainServiceInterface<Adresse, String, String> {
+public interface AdresseService extends MainServiceInterface<Integer, String> {
 
 }

@@ -17,18 +17,27 @@ public class LandServiceImpl implements LandService {
         this.repository = repository;
     }
 
-    @Override
-    public Land create(Land land, Integer id) {
-        return null;
-    }
 
-    @Override
     public Land get(String... arr) {
         return repository.getById(arr);
     }
 
-    @Override
+
     public Land create(Land land) {
         return repository.save(land);
+    }
+
+
+    @Override
+    public String saveIt(String... arr) {
+        if(get(arr[0]) == null){
+            create(new Land(arr[0]));
+        }
+        return arr[0];
+    }
+
+    @Override
+    public String saveIt(String[] t, String... arr) {
+        return null;
     }
 }

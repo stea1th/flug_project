@@ -1,8 +1,5 @@
 package flug.project.service;
 
-import flug.project.entity.Land;
+public interface LandService extends MainServiceInterface<String, String> {
 
-public interface LandService extends MainServiceInterface<Land, String, Integer> {
-
-    Land create(Land land);
 }

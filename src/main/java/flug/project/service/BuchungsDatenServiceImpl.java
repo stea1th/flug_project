@@ -2,6 +2,9 @@ package flug.project.service;
 
 import flug.project.entity.BuchungsDaten;
 import flug.project.repository.BuchungsDatenRepository;
+import flug.project.utils.ConverterUtil;
+import flug.project.utils.CountUtil;
+import flug.project.utils.DateTimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,23 +21,28 @@ public class BuchungsDatenServiceImpl implements BuchungsDatenService {
         this.repository = repository;
     }
 
-    @Override
     public BuchungsDaten create(BuchungsDaten buchungsDaten, Integer passId, Integer flugId) {
         return repository.save(buchungsDaten, passId, flugId);
     }
 
-    @Override
-    public List<BuchungsDaten> get(Integer nummer, String flugId) {
-        return repository.getBuchungsDaten(nummer, flugId);
+    public BuchungsDaten get(Integer nummer, String flugId) {
+        List<BuchungsDaten> buchungsDatens = repository.getBuchungsDaten(nummer, flugId);
+        return buchungsDatens.isEmpty()? null : buchungsDatens.get(0);
     }
 
     @Override
-    public BuchungsDaten create(BuchungsDaten buchungsDaten, Integer id) {
+    public Integer saveIt(String... arr) {
         return null;
     }
 
     @Override
-    public BuchungsDaten get(Integer... arr) {
-        return null;
+    public Integer saveIt(Integer[] t, String... arr) {
+        Integer num = ConverterUtil.convertInt(arr[1]);
+        BuchungsDaten bd = get(num, arr[0]);
+        if(bd==null){
+            bd = new BuchungsDaten(CountUtil.getNewId(), num, DateTimeUtil.transformToDate(arr[2]));
+            create(bd, t[0], t[1]);
+        }
+        return bd.getBdId();
     }
 }

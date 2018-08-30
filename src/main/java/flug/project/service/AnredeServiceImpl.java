@@ -19,12 +19,6 @@ public class AnredeServiceImpl implements AnredeService {
         this.repository = repository;
     }
 
-    @Override
-    public Anrede create(Anrede anrede, Integer id) {
-        return null;
-    }
-
-    @Override
     public Anrede get(String... arr) {
         return repository.getById(arr);
     }
@@ -33,5 +27,16 @@ public class AnredeServiceImpl implements AnredeService {
         return repository.save(anrede);
     }
 
+    @Override
+    public String saveIt(String... arr) {
+        if(get(arr[0]) == null){
+            create(new Anrede(arr[0]));
+        }
+        return arr[0];
+    }
 
+    @Override
+    public String saveIt(String[] t, String... arr) {
+        return null;
+    }
 }
