@@ -127,7 +127,9 @@ create table Flug
 
 create table BuchungsDaten
 (
-  BD_ID int not null,
+  BD_ID int not null
+  constraint BD_ID_PK
+  primary key,
   Nummer int  not null,
   Datum  date not null,
   P_ID   int  not null
