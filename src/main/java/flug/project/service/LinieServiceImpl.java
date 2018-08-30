@@ -7,8 +7,8 @@ import flug.project.utils.DateTimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import static flug.project.utils.ConverterUtil.convertToInt;
+import static flug.project.utils.DateTimeUtil.transformToTime;
 
 @Service
 public class LinieServiceImpl implements LinieService {
@@ -31,9 +31,9 @@ public class LinieServiceImpl implements LinieService {
 
     @Override
     public Integer saveIt(String... arr) {
-        Integer id = ConverterUtil.convertInt(arr[0]);
+        Integer id = convertToInt(arr[0]);
         if(get(id)==null){
-            create(new Linie(id, DateTimeUtil.transformToTime(arr[1])), arr[2], arr[3], arr[4]);
+            create(new Linie(id, transformToTime(arr[1])), arr[2], arr[3], arr[4]);
         }
         return id;
     }

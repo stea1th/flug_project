@@ -9,10 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+
+import static flug.project.utils.ConverterUtil.convertToInt;
+import static flug.project.utils.CountUtil.getNewId;
+import static flug.project.utils.DateTimeUtil.transformToDate;
 
 @Service
 public class FlugServiceImpl implements FlugService {
@@ -42,9 +43,9 @@ public class FlugServiceImpl implements FlugService {
     public Integer saveIt(Integer[] t, String... arr) {
         Flug f = get(arr);
         if(f==null){
-            f = new Flug(CountUtil.getNewId(), DateTimeUtil.transformToDate(arr[0]),
+            f = new Flug(getNewId(), transformToDate(arr[0]),
                     BigDecimal.valueOf(Double.parseDouble(arr[1])),
-                    ConverterUtil.convertInt(arr[2]));
+                    convertToInt(arr[2]));
             create(f, t[0], t[1]);
         }
         return f.getFlId();

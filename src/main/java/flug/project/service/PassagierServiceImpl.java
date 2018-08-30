@@ -6,6 +6,8 @@ import flug.project.utils.ConverterUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static flug.project.utils.ConverterUtil.convertToInt;
+
 @Service
 public class PassagierServiceImpl implements PassagierService {
 
@@ -33,7 +35,7 @@ public class PassagierServiceImpl implements PassagierService {
 
     @Override
     public Integer saveIt(Integer[] t, String... arr) {
-        Integer id = ConverterUtil.convertInt(arr[1]);
+        Integer id = convertToInt(arr[1]);
         if(get(id)== null){
             create(new Passagier(id, arr[2]), arr[0], t[0]);
         }

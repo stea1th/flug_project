@@ -7,9 +7,10 @@ import flug.project.utils.CountUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import static flug.project.utils.ConverterUtil.convertToInt;
+import static flug.project.utils.CountUtil.getNewId;
 
 @Service
 public class FlugzeugTypServiceImpl implements FlugzeugTypService {
@@ -36,7 +37,7 @@ public class FlugzeugTypServiceImpl implements FlugzeugTypService {
     public Integer saveIt(String... arr) {
         FlugzeugTyp ft = get(arr);
         if(ft==null){
-            ft = new FlugzeugTyp(CountUtil.getNewId(), arr[0], ConverterUtil.convertInt(arr[1]), arr[2]);
+            ft = new FlugzeugTyp(getNewId(), arr[0], convertToInt(arr[1]), arr[2]);
             create(ft);
         }
         return ft.getFtId();

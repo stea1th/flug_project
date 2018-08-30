@@ -11,6 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static flug.project.utils.ConverterUtil.splitNull;
+import static flug.project.utils.CountUtil.getNewId;
+
 @Service
 public class AdresseServiceImpl implements AdresseService {
 
@@ -31,10 +34,10 @@ public class AdresseServiceImpl implements AdresseService {
 
     @Override
     public Integer saveIt(String... arr) {
-        String plz = ConverterUtil.splitNull(arr[1]);
+        String plz = splitNull(arr[1]);
         Adresse a = get(arr[2], plz);
         if(a == null){
-            a = new Adresse(CountUtil.getNewId(), plz, arr[1]);
+            a = new Adresse(getNewId(), plz, arr[2]);
             create(a, arr[0]);
         }
         return a.getAdrId();

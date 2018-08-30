@@ -33,7 +33,7 @@ public class FlugzeugTypRepositoryImpl implements FlugzeugTypRepository {
     public List<FlugzeugTyp> get(String... arr) {
         return em.createNamedQuery(FlugzeugTyp.GET, FlugzeugTyp.class)
                 .setParameter(1, arr[0])
-                .setParameter(2, ConverterUtil.convertInt(arr[1]))
+                .setParameter(2, ConverterUtil.convertToInt(arr[1]))
                 .setParameter(3, arr[2])
                 .getResultList();
     }

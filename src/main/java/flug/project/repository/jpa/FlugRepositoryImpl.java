@@ -35,7 +35,7 @@ public class FlugRepositoryImpl implements FlugRepository {
         return em.createNamedQuery(Flug.GET, Flug.class)
                 .setParameter(1, DateTimeUtil.transformToDate(arr[0]))
                 .setParameter(2, BigDecimal.valueOf(Double.parseDouble(arr[1])))
-                .setParameter(3, ConverterUtil.convertInt(arr[2]))
+                .setParameter(3, ConverterUtil.convertToInt(arr[2]))
                 .getResultList();
 
     }

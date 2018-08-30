@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static flug.project.utils.ConverterUtil.setFormat;
+
 @Service
 public class OrtServiceImpl implements OrtService {
 
@@ -32,10 +34,11 @@ public class OrtServiceImpl implements OrtService {
 
     @Override
     public String saveIt(String... arr) {
-        if(get(arr[0]) == null){
-            create(new Ort(arr[0]), arr[1]);
+        String s = setFormat(arr[0]);
+        if(get(s) == null){
+            create(new Ort(s), arr[1]);
         }
-        return arr[0];
+        return s;
     }
 
     @Override

@@ -43,7 +43,7 @@ public abstract class AbstractMainController {
     @Autowired
     private BuchungsDatenService buchungsDatenService;
 
-    public void saveAll(String url) throws IOException {
+    void saveAll(String url) throws IOException {
 
         int count = 0;
         for(String[] arr : XLSReader.readXLS(ConverterUtil.convertToUrl(url))){
@@ -53,8 +53,8 @@ public abstract class AbstractMainController {
             String anrId = anredeService.saveIt(arr[19]);
             int passId = passagierService.saveIt(new Integer[]{adrId}, anrId, arr[18], arr[20]);
 
-            String vonFlug = flughafenService.saveIt(arr[3], ortService.saveIt(arr[4], landService.saveIt(arr[5])));
-            String bisFlug = flughafenService.saveIt(arr[6], ortService.saveIt(arr[7], landService.saveIt(arr[8])));
+            String vonFlug = flughafenService.saveIt(arr[3], ortService.saveIt(arr[5], landService.saveIt(arr[4])));
+            String bisFlug = flughafenService.saveIt(arr[6], ortService.saveIt(arr[8], landService.saveIt(arr[7])));
 
             String fluggesId = fluggeselschaftService.saveIt(arr[0], arr[1]);
 

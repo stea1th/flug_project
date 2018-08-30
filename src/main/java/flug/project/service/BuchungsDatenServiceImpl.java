@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
+
+import static flug.project.utils.ConverterUtil.convertToInt;
+import static flug.project.utils.CountUtil.getNewId;
+import static flug.project.utils.DateTimeUtil.transformToDate;
 
 @Service
 public class BuchungsDatenServiceImpl implements BuchungsDatenService {
@@ -37,10 +40,10 @@ public class BuchungsDatenServiceImpl implements BuchungsDatenService {
 
     @Override
     public Integer saveIt(Integer[] t, String... arr) {
-        Integer num = ConverterUtil.convertInt(arr[1]);
+        Integer num = convertToInt(arr[1]);
         BuchungsDaten bd = get(num, arr[0]);
         if(bd==null){
-            bd = new BuchungsDaten(CountUtil.getNewId(), num, DateTimeUtil.transformToDate(arr[2]));
+            bd = new BuchungsDaten(getNewId(), num, transformToDate(arr[2]));
             create(bd, t[0], t[1]);
         }
         return bd.getBdId();
