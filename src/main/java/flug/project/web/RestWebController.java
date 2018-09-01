@@ -1,5 +1,6 @@
 package flug.project.web;
 
+import flug.project.utils.exception.CannotSaveException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,14 +19,11 @@ public class RestWebController extends AbstractMainController {
     public String postString(@RequestBody String url)  {
         int start = LocalTime.now().toSecondOfDay();
         try {
-            super.saveAll(url);
+           super.saveAll(url);
         } catch (IOException e) {
             return "Error";
-        } catch (NullPointerException e) {
-            //return "Null";
-            e.printStackTrace();
-        }catch (NumberFormatException | DataIntegrityViolationException e) {
-            return "Format";
+        } catch (CannotSaveException e) {
+            return "Error on line "+e.getLocalizedMessage();
         } catch (Exception e){
             e.printStackTrace();
         }

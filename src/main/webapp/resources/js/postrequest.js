@@ -24,16 +24,12 @@ $(document).ready(function(){
                     $("#postResultDiv").html("<p style='background-color:#b05f53; color:white; padding:20px 20px 20px 20px'>" +
                         "Data Type Error <br>" +
                         "---> File "+formData+" is corrupt/ not .XLS-format!</p>");
-                }else if(result === "Null"){
+                }else {
                     $("#postResultDiv").html("<p style='background-color:#b05f53; color:white; padding:20px 20px 20px 20px'>" +
                         "Data Saving Error <br>" +
-                        "---> File: "+formData+" is already saved!</p>");
-                }else if(result === "Format"){
-                    $("#postResultDiv").html("<p style='background-color:#b05f53; color:white; padding:20px 20px 20px 20px'>" +
-                        "Data Saving Error <br>" +
-                        "---> File: "+formData+" has invalid format!</p>");
+                        "---> File: " + result + " has invalid format!</p>");
                 }
-                console.log(result)
+                    console.log(result)
             },
             error : function(e) {
                 alert("Error!");

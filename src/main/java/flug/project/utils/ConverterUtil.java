@@ -3,7 +3,7 @@ package flug.project.utils;
 public class ConverterUtil {
 
     public static Integer convertToInt(String s){
-        return Integer.parseInt(s.replace(".0", "").trim());
+        return Integer.parseInt(s.replace("-", "").replace(".0", "").trim());
     }
 
     public static String splitNull(String s){
