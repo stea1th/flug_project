@@ -42,7 +42,7 @@ public class XLSReader {
                          stringList.add(cell.getStringCellValue());
                          break;
                      case NUMERIC:
-                         stringList.add(Double.valueOf(cell.getNumericCellValue()).toString());
+                         stringList.add(String.valueOf(cell.getNumericCellValue()));
                          break;
                  }
              }
