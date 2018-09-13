@@ -5,6 +5,7 @@ import java.util.Objects;
 
 @Entity
 public class Ort {
+
     private String oId;
     private Land landByLId;
 

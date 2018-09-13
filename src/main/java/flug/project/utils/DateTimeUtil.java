@@ -10,7 +10,6 @@ import static flug.project.utils.ConverterUtil.splitNull;
 public class DateTimeUtil {
 
     private static final LocalDate START_DATE = LocalDate.of(1900, 1, 1);
-
     public static LocalDate transformToDate(String s){
         return START_DATE
                 .plus(Long.parseLong(splitNull(s))-2,
@@ -23,3 +22,4 @@ public class DateTimeUtil {
                 .truncatedTo(ChronoUnit.MINUTES);
     }
 }
+

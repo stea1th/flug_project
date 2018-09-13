@@ -5,7 +5,6 @@ public class ConverterUtil {
     public static Integer convertToInt(String s){
         return Integer.parseInt(s.replace("-", "").replace(".0", "").trim());
     }
-
     public static String splitNull(String s){
         return s.replace(".0", "");
     }

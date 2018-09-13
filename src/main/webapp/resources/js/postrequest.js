@@ -16,7 +16,8 @@ $(document).ready(function(){
             dataType : 'text',
             success : function (result) {
                 if(result === "Done"){
-                    $("#postResultDiv").html("<p style='background-color:#7FA7B0; color:white; padding:20px 20px 20px 20px'>" +
+                    $("#postResultDiv").html("<p style='background-color:#7FA7B0;" +
+                        " color:white; padding:20px 20px 20px 20px'>" +
                         "Saved Successfully! <br>" +
                         "---> FileName's Info: Filename = " +
                         formData  + "</p>");

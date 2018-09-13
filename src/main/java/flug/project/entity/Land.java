@@ -5,6 +5,7 @@ import java.util.Objects;
 
 @Entity
 public class Land {
+
     private String lId;
 
     public Land() {

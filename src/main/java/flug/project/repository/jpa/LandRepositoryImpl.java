@@ -22,6 +22,10 @@ public class LandRepositoryImpl implements LandRepository {
         em.persist(land);
         return land;
     }
+    @Override
+    public Land getById(String... arr) {
+        return em.find(Land.class, arr[0]);
+    }
 
     @Override
     public Land save(Land land, Integer... arr) {
@@ -33,10 +37,7 @@ public class LandRepositoryImpl implements LandRepository {
         return null;
     }
 
-    @Override
-    public Land getById(String... arr) {
-        return em.find(Land.class, arr[0]);
-    }
+
 
 
 }

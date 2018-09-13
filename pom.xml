@@ -27,6 +27,7 @@
         <spring-data-jpa.version>2.0.8.RELEASE</spring-data-jpa.version>
         <postgresql.version>42.2.2</postgresql.version>
         <tomcat.version>8.5.32</tomcat.version>
+        <c3p0.version>0.9.5.2</c3p0.version>
     </properties>
     <build>
         <finalName>flug_project</finalName>
@@ -62,7 +63,7 @@
         <dependency>
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>
-            <version>0.9.5.2</version>
+            <version>${c3p0.version}</version>
         </dependency>
         <!--Spring-->
         <dependency>
