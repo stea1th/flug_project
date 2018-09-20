@@ -44,13 +44,22 @@
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
           p:entityManagerFactory-ref="entityManagerFactory"/>
 
-    <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-        <property name="driverClass" value="org.postgresql.Driver"/>
-        <property name="jdbcUrl" value="${database.url}"/>
-        <property name="user" value="${database.username}"/>
-        <property name="password" value="${database.password}"/>
+    <context:property-placeholder location="classpath:db/heroku.properties" system-properties-mode="OVERRIDE"/>
+    <bean class="java.net.URI" id="dbUrl">
+        <constructor-arg value="${DATABASE_URL}"/>
     </bean>
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close"
+          p:driverClass="org.postgresql.Driver"
+          p:jdbcUrl="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + @dbUrl.getPath() }"
+          p:user="#{ @dbUrl.getUserInfo().split(':')[0] }" p:password="#{ @dbUrl.getUserInfo().split(':')[1] }"/>
+
+    <!--<context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>-->
+    <!--<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">-->
+        <!--<property name="driverClass" value="org.postgresql.Driver"/>-->
+        <!--<property name="jdbcUrl" value="${database.url}"/>-->
+        <!--<property name="user" value="${database.username}"/>-->
+        <!--<property name="password" value="${database.password}"/>-->
+    <!--</bean>-->
 
     <!--<context:property-placeholder location="classpath:db/mssql.properties" system-properties-mode="OVERRIDE"/>-->
     <!--<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">-->
