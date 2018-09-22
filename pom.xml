@@ -65,6 +65,12 @@
             <artifactId>c3p0</artifactId>
             <version>${c3p0.version}</version>
         </dependency>
+        <!--dbcp-->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>dbcp</artifactId>
+            <version>6.0.53</version>
+        </dependency>
         <!--Spring-->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -166,7 +172,18 @@
                     </plugin>
                 </plugins>
             </build>
-
+            <dependencies>
+                <dependency>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                    <version>${postgresql.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.tomcat</groupId>
+                    <artifactId>tomcat-jdbc</artifactId>
+                    <version>${tomcat.version}</version>
+                </dependency>
+            </dependencies>
         </profile>
     </profiles>
     <dependencyManagement>
