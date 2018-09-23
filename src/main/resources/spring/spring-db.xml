@@ -52,9 +52,9 @@
         <constructor-arg value="${database.url}"/>
     </bean>
     <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
-          p:url="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + @dbUrl.getPath() }"
-          p:username="#{ @dbUrl.getUserInfo().split(':')[0] }"
-          p:password="#{ @dbUrl.getUserInfo().split(':')[1] }"
+          p:url="${database.url}"
+          p:username="${database.user}"
+          p:password="${database.password}"
           p:driverClassName="org.postgresql.Driver"
           p:validationQuery="SELECT 1"
           p:maxActive="10"
