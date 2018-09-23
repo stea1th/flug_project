@@ -28,6 +28,7 @@
         <postgresql.version>42.2.2</postgresql.version>
         <tomcat.version>8.5.32</tomcat.version>
         <c3p0.version>0.9.5.2</c3p0.version>
+        <jackson-databind.version>2.9.7</jackson-databind.version>
     </properties>
     <build>
         <finalName>flug_project</finalName>
@@ -64,6 +65,12 @@
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>
             <version>${c3p0.version}</version>
+        </dependency>
+        <!--Jackson-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind.version}</version>
         </dependency>
         <!--dbcp-->
         <dependency>
